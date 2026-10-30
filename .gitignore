@@ -1,0 +1,17 @@
+.DS_Store
+.vscode/
+.idea/
+*.iml
+
+# Secrets
+.env
+.env.local
+.env.*.local
+
+# Backend
+backend/target/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+.vercel/
