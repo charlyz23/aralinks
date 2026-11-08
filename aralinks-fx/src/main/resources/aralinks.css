@@ -1,0 +1,66 @@
+/* AraLinks theme — same tokens as the web demo (assets/demo-kit/theme.json). */
+.root {
+    -red: #F2464C;
+    -red-dark: #C4232C;
+    -red-light: #FFE6E5;
+    -green-dark: #58A700;
+    -green-light: #D7FFB8;
+    -ink: #3C3C3C;
+    -muted: #777777;
+    -line: #E5E5E5;
+    -soft: #F7F7F7;
+
+    -fx-font-family: "Nunito";
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-background-color: linear-gradient(to bottom, #FFF3F2, white 60%);
+}
+
+.title {
+    -fx-font-size: 28px;
+    -fx-font-weight: 900;
+    -fx-text-fill: -ink;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.muted   { -fx-text-fill: -muted; -fx-font-size: 13px; }
+.success { -fx-text-fill: -green-dark; -fx-background-color: -green-light; -fx-background-radius: 12; -fx-padding: 10 12; }
+.error   { -fx-text-fill: -red-dark; -fx-background-color: -red-light; -fx-background-radius: 12; -fx-padding: 10 12; }
+
+.card {
+    -fx-background-color: white;
+    -fx-border-color: -line;
+    -fx-border-width: 2;
+    -fx-border-radius: 18;
+    -fx-background-radius: 18;
+    -fx-padding: 24;
+}
+
+.text-field, .password-field {
+    -fx-background-color: -soft;
+    -fx-border-color: -line;
+    -fx-border-width: 2;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 10 14;
+    -fx-font-size: 15px;
+}
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #FFB7B4;
+    -fx-background-color: white;
+}
+
+/* The chunky 3D button: a dark layer underneath, the red layer on top. */
+.btn-primary {
+    -fx-background-color: -red-dark, -red;
+    -fx-background-insets: 0, 0 0 4 0;
+    -fx-background-radius: 16;
+    -fx-text-fill: white;
+    -fx-font-weight: 900;
+    -fx-font-size: 14px;
+    -fx-padding: 12 28;
+    -fx-cursor: hand;
+}
+.btn-primary:hover   { -fx-background-color: -red-dark, #F45A60; }
+.btn-primary:pressed { -fx-background-insets: 4 0 0 0, 4 0 0 0; }

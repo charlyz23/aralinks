@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="320" viewBox="0 0 260 320" role="img" aria-label="Sparty, Pastel Coral">
+  <defs>
+    <radialGradient id="v3-helm" cx="40%" cy="20%" r="88%"><stop offset="0" stop-color="#FFB0AE"/><stop offset=".55" stop-color="#F58C8E"/><stop offset="1" stop-color="#E06F74"/></radialGradient>
+    <linearGradient id="v3-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE6D8"/><stop offset="1" stop-color="#F5CDBB"/></linearGradient>
+    <linearGradient id="v3-plume" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F27A7C"/><stop offset=".6" stop-color="#FF9D93"/><stop offset="1" stop-color="#FFC2A8"/></linearGradient>
+    <radialGradient id="v3-body" cx="38%" cy="26%" r="82%"><stop offset="0" stop-color="#FFB0AE"/><stop offset=".6" stop-color="#F58C8E"/><stop offset="1" stop-color="#E06F74"/></radialGradient>
+    <radialGradient id="v3-arm" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#FFB0AE"/><stop offset="1" stop-color="#F58C8E"/></radialGradient>
+    <radialGradient id="v3-leg" cx="38%" cy="25%" r="85%"><stop offset="0" stop-color="#E8797E"/><stop offset="1" stop-color="#CC5F66"/></radialGradient>
+    <linearGradient id="v3-belt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE6D8"/><stop offset="1" stop-color="#F5CDBB"/></linearGradient>
+    <radialGradient id="v3-face" cx="50%" cy="62%" r="64%"><stop offset="0" stop-color="#FFF3EA"/><stop offset=".72" stop-color="#FBE2D4"/><stop offset="1" stop-color="#EEC4B2"/></radialGradient>
+    <linearGradient id="v3-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9473F" stop-opacity=".35"/><stop offset=".32" stop-color="#B9473F" stop-opacity="0"/></linearGradient>
+    <radialGradient id="v3-blush"><stop offset="0" stop-color="#F28C78" stop-opacity=".9"/><stop offset=".55" stop-color="#F49F89" stop-opacity=".5"/><stop offset="1" stop-color="#F7B9A6" stop-opacity="0"/></radialGradient>
+    <radialGradient id="v3-eye" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#3A3333"/><stop offset="1" stop-color="#161212"/></radialGradient>
+    <radialGradient id="v3-shadow"><stop offset="0" stop-color="#7A3A30" stop-opacity=".28"/><stop offset="1" stop-color="#7A3A30" stop-opacity="0"/></radialGradient>
+    <radialGradient id="v3-ao"><stop offset="0" stop-color="#5E1E22" stop-opacity=".4"/><stop offset="1" stop-color="#5E1E22" stop-opacity="0"/></radialGradient>
+    <clipPath id="v3-head-clip"><path d="M130 56 C198 56 230 94 230 146 C230 190 194 210 130 210 C66 210 30 190 30 146 C30 94 62 56 130 56 Z"/></clipPath>
+    <clipPath id="v3-torso-clip"><path d="M130 192 C160 192 175 210 175 234 C175 258 158 270 130 270 C102 270 85 258 85 234 C85 210 100 192 130 192 Z"/></clipPath>
+  </defs>
+  <g transform="translate(0 14)">
+    <ellipse cx="130" cy="288" rx="62" ry="11" fill="url(#v3-shadow)"/>
+    <g transform="translate(130 236) scale(1 1) translate(-130 -236)">
+      <rect x="101" y="242" width="27" height="40" rx="13.5" fill="url(#v3-leg)"/>
+      <rect x="132" y="242" width="27" height="40" rx="13.5" fill="url(#v3-leg)"/>
+      <ellipse cx="84" cy="230" rx="13" ry="23" fill="url(#v3-arm)" transform="rotate(16 84 230)"/>
+      <ellipse cx="184" cy="216" rx="13" ry="23" fill="url(#v3-arm)" transform="rotate(-40 184 216)"/>
+      <path d="M130 192 C160 192 175 210 175 234 C175 258 158 270 130 270 C102 270 85 258 85 234 C85 210 100 192 130 192 Z" fill="url(#v3-body)"/>
+      <g clip-path="url(#v3-torso-clip)"><path d="M80 236 Q130 248 180 236 L180 250 Q130 262 80 250 Z" fill="url(#v3-belt)"/></g>
+      <rect x="122" y="241" width="16" height="12" rx="4" fill="#E06F74"/>
+      <circle cx="130" cy="219" r="10" fill="#FFE6D8"/><path d="M125 224 L130 214 L135 224" stroke="#F5CDBB" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <ellipse cx="130" cy="202" rx="54" ry="14" fill="url(#v3-ao)"/>
+    <g transform="translate(130 140) scale(1.02 0.98) translate(-130 -140)">
+      <path d="M124 60 C116 38 124 20 142 13 C152 9 164 11 172 4 C171 14 166 19 160 22 C171 22 181 17 192 19 C186 27 177 31 168 33 C178 35 187 40 193 49 C179 48 167 44 157 42 C147 42 140 50 138 60 Z" fill="url(#v3-plume)"/>
+      <path d="M136 52 Q152 38 176 33" stroke="#F27A7C" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <rect x="120" y="50" width="20" height="12" rx="5" fill="#F5CDBB"/>
+      <path d="M130 56 C198 56 230 94 230 146 C230 190 194 210 130 210 C66 210 30 190 30 146 C30 94 62 56 130 56 Z" fill="url(#v3-helm)"/>
+      <path d="M56 148 C56 122 80 110 130 110 C180 110 204 122 204 148 C204 182 174 200 130 200 C86 200 56 182 56 148 Z" fill="url(#v3-face)"/>
+      <path d="M56 148 C56 122 80 110 130 110 C180 110 204 122 204 148 C204 182 174 200 130 200 C86 200 56 182 56 148 Z" fill="url(#v3-rim)"/>
+      <g clip-path="url(#v3-head-clip)">
+      <path d="M20 120 L62 124 C60 150 64 176 76 196 L20 210 Z" fill="url(#v3-band)"/>
+      <path d="M240 120 L198 124 C200 150 196 176 184 196 L240 210 Z" fill="url(#v3-band)"/></g>
+      <g clip-path="url(#v3-head-clip)"><path d="M20 116 C60 96 200 96 240 116 L240 130 C206 116 172 114 152 116 Q141 118 135 128 Q130 135 125 128 Q119 118 108 116 C88 114 54 116 20 130 Z" fill="url(#v3-band)"/></g>
+      <ellipse cx="82" cy="174" rx="22" ry="14" fill="url(#v3-blush)"/>
+      <ellipse cx="178" cy="174" rx="22" ry="14" fill="url(#v3-blush)"/>
+      <ellipse cx="98" cy="162" rx="10.5" ry="13" fill="url(#v3-eye)"/><ellipse cx="162" cy="162" rx="10.5" ry="13" fill="url(#v3-eye)"/><circle cx="101" cy="157" r="3" fill="#fff" opacity=".9"/><circle cx="165" cy="157" r="3" fill="#fff" opacity=".9"/>
+      <path d="M120 161 Q125 167 130 161 Q135 167 140 161" stroke="#1E1818" stroke-width="3.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+</svg>

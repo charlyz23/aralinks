@@ -39,6 +39,16 @@ Run the backend tests (they use a real PostgreSQL too):
 cd backend && ./mvnw test
 ```
 
+## Clickable demo (no backend)
+
+`demo/index.html` is a single-file, Duolingo-style demo of the proposal's screens and program flow (login/register, browse classes, class detail, private requests, tutor dashboard, session history and ratings, admin). It needs no Java or database: data lives in your browser and **Reset demo** restores it. Open the file directly, or serve it:
+
+```bash
+python3 -m http.server 4173 --directory demo
+```
+
+Demo accounts use the password `demo123`: learner `25-11111`, tutor `23-01234` or `22-04567`, admin `00-00001`. Each action names the proposal method it represents, and invalid input shows the matching exception.
+
 ## Deploy
 
 1. **Database:** create a Neon or Supabase project. The API creates its tables on first start with Flyway.

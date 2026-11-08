@@ -1,0 +1,662 @@
+{
+  "courses": [
+    {
+      "id": "c1",
+      "name": "Java Programming",
+      "category": "Computer Science/IT",
+      "type": "Course",
+      "icon": "\u2615",
+      "color": "#FF9600"
+    },
+    {
+      "id": "c2",
+      "name": "Data Structures",
+      "category": "Computer Science/IT",
+      "type": "Course",
+      "icon": "\ud83c\udf33",
+      "color": "#58CC02"
+    },
+    {
+      "id": "c3",
+      "name": "Calculus I",
+      "category": "Engineering",
+      "type": "Course",
+      "icon": "\ud83d\udcc8",
+      "color": "#1CB0F6"
+    },
+    {
+      "id": "c4",
+      "name": "Physics for Engineers",
+      "category": "Engineering",
+      "type": "Course",
+      "icon": "\ud83e\uddf2",
+      "color": "#CE82FF"
+    },
+    {
+      "id": "c5",
+      "name": "Architectural Drafting",
+      "category": "Architecture",
+      "type": "Course",
+      "icon": "\ud83d\udcd0",
+      "color": "#FF4B4B"
+    },
+    {
+      "id": "c6",
+      "name": "Circuit Analysis",
+      "category": "Engineering",
+      "type": "Course",
+      "icon": "\u26a1",
+      "color": "#E5A400"
+    },
+    {
+      "id": "c7",
+      "name": "UI/UX Design",
+      "category": "Skills",
+      "type": "Skill",
+      "icon": "\ud83c\udfa8",
+      "color": "#2B70C9"
+    },
+    {
+      "id": "c8",
+      "name": "Discrete Math",
+      "category": "Computer Science/IT",
+      "type": "Course",
+      "icon": "\ud83d\udd22",
+      "color": "#00B894"
+    }
+  ],
+  "users": [
+    {
+      "id": "u1",
+      "role": "Administrator",
+      "srCode": "00-00001",
+      "name": "Admin Office",
+      "email": "admin@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#4B4B4B"
+    },
+    {
+      "id": "u2",
+      "role": "Tutor",
+      "srCode": "23-01234",
+      "name": "Ben Reyes",
+      "email": "ben@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#FF9600",
+      "program": "BS Computer Science",
+      "yearLevel": 3,
+      "courses": [
+        "c1",
+        "c2",
+        "c8"
+      ],
+      "hourlyRate": 200,
+      "mode": "Online",
+      "availability": [
+        {
+          "day": "Mon",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": "Tue",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": "Wed",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": "Thu",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": "Fri",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": "Sat",
+          "start": "09:00",
+          "end": "17:00"
+        }
+      ],
+      "bio": "3rd-year CS student. I make Java click with live coding and lots of tiny exercises."
+    },
+    {
+      "id": "u3",
+      "role": "Tutor",
+      "srCode": "22-04567",
+      "name": "Gia Santos",
+      "email": "gia@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#CE82FF",
+      "program": "BS Electrical Engineering",
+      "yearLevel": 4,
+      "courses": [
+        "c3",
+        "c4",
+        "c6"
+      ],
+      "hourlyRate": 180,
+      "mode": "Online / Face-to-face",
+      "availability": [
+        {
+          "day": "Tue",
+          "start": "10:00",
+          "end": "18:00"
+        },
+        {
+          "day": "Thu",
+          "start": "10:00",
+          "end": "18:00"
+        },
+        {
+          "day": "Fri",
+          "start": "10:00",
+          "end": "18:00"
+        }
+      ],
+      "bio": "Engineering dean's lister. Calculus is just patterns \u2014 I'll show you how to spot them."
+    },
+    {
+      "id": "u4",
+      "role": "Tutor",
+      "srCode": "23-07890",
+      "name": "Marco Dizon",
+      "email": "marco@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#FF4B4B",
+      "program": "BS Architecture",
+      "yearLevel": 3,
+      "courses": [
+        "c5",
+        "c7"
+      ],
+      "hourlyRate": 150,
+      "mode": "Online",
+      "availability": [
+        {
+          "day": "Wed",
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": "Sat",
+          "start": "09:00",
+          "end": "17:00"
+        }
+      ],
+      "bio": "Architecture student and freelance designer. Bring your plates, we'll fix the line weights."
+    },
+    {
+      "id": "u5",
+      "role": "Learner",
+      "srCode": "25-11111",
+      "name": "Cara Lim",
+      "email": "cara@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#1CB0F6",
+      "program": "BS Computer Science",
+      "yearLevel": 1
+    },
+    {
+      "id": "u6",
+      "role": "Learner",
+      "srCode": "24-22222",
+      "name": "Dan Cruz",
+      "email": "dan@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#58CC02",
+      "program": "BS Electronics Engineering",
+      "yearLevel": 2
+    },
+    {
+      "id": "u7",
+      "role": "Learner",
+      "srCode": "25-33333",
+      "name": "Ella Mendoza",
+      "email": "ella@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#FF86D0",
+      "program": "BS Architecture",
+      "yearLevel": 1
+    },
+    {
+      "id": "u8",
+      "role": "Learner",
+      "srCode": "25-44444",
+      "name": "Felix Tan",
+      "email": "felix@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#00B894",
+      "program": "BS Computer Science",
+      "yearLevel": 1
+    },
+    {
+      "id": "u9",
+      "role": "Learner",
+      "srCode": "24-55555",
+      "name": "Hana Ramos",
+      "email": "hana@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#2B70C9",
+      "program": "BS Information Technology",
+      "yearLevel": 2
+    },
+    {
+      "id": "u10",
+      "role": "Learner",
+      "srCode": "25-66666",
+      "name": "Ivan Garcia",
+      "email": "ivan@aralinks.edu",
+      "password": "demo123",
+      "university": "BatStateU \u2013 Alangilan",
+      "active": true,
+      "color": "#E5A400",
+      "program": "BS Civil Engineering",
+      "yearLevel": 1
+    }
+  ],
+  "classes": [
+    {
+      "id": "k1",
+      "kind": "group",
+      "title": "Java Basics Bootcamp",
+      "courseId": "c1",
+      "tutorId": "u2",
+      "days": [
+        "Mon",
+        "Wed"
+      ],
+      "start": "15:00",
+      "end": "17:00",
+      "max": 5,
+      "rate": 150,
+      "platform": "Google Meet",
+      "link": "https://meet.google.com/abc-defg-hij",
+      "learners": [
+        "u5",
+        "u8",
+        "u9"
+      ],
+      "status": "open",
+      "attendance": {}
+    },
+    {
+      "id": "k2",
+      "kind": "group",
+      "title": "Recursion & Linked Lists",
+      "courseId": "c2",
+      "tutorId": "u2",
+      "days": [
+        "Sat"
+      ],
+      "start": "09:00",
+      "end": "11:00",
+      "max": 5,
+      "rate": 120,
+      "platform": "Discord",
+      "link": "https://discord.gg/aralinks-dsa",
+      "learners": [
+        "u6",
+        "u7",
+        "u8",
+        "u9",
+        "u10"
+      ],
+      "status": "open",
+      "attendance": {}
+    },
+    {
+      "id": "k3",
+      "kind": "group",
+      "title": "Limits & Derivatives Crash Course",
+      "courseId": "c3",
+      "tutorId": "u3",
+      "days": [
+        "Tue",
+        "Thu"
+      ],
+      "start": "13:00",
+      "end": "15:00",
+      "max": 5,
+      "rate": 150,
+      "platform": "Zoom",
+      "link": "https://zoom.us/j/1234567890",
+      "learners": [
+        "u6"
+      ],
+      "status": "open",
+      "attendance": {}
+    },
+    {
+      "id": "k4",
+      "kind": "group",
+      "title": "Mechanics Problem-Set Party",
+      "courseId": "c4",
+      "tutorId": "u3",
+      "days": [
+        "Fri"
+      ],
+      "start": "16:00",
+      "end": "18:00",
+      "max": 4,
+      "rate": 100,
+      "platform": "Google Meet",
+      "link": "https://meet.google.com/xyz-mech-ppp",
+      "learners": [
+        "u6",
+        "u8",
+        "u9"
+      ],
+      "status": "open",
+      "attendance": {}
+    },
+    {
+      "id": "k5",
+      "kind": "group",
+      "title": "Drafting 101: Line Weights",
+      "courseId": "c5",
+      "tutorId": "u4",
+      "days": [
+        "Wed"
+      ],
+      "start": "10:00",
+      "end": "12:00",
+      "max": 6,
+      "rate": 130,
+      "platform": "Google Meet",
+      "link": "",
+      "learners": [],
+      "status": "open",
+      "attendance": {}
+    },
+    {
+      "id": "k6",
+      "kind": "group",
+      "title": "Figma in an Afternoon",
+      "courseId": "c7",
+      "tutorId": "u4",
+      "days": [
+        "Sat"
+      ],
+      "start": "13:00",
+      "end": "16:00",
+      "max": 8,
+      "rate": 100,
+      "platform": "Discord",
+      "link": "https://discord.gg/figma-afternoon",
+      "learners": [
+        "u7",
+        "u10"
+      ],
+      "status": "open",
+      "attendance": {}
+    },
+    {
+      "id": "k7",
+      "kind": "group",
+      "title": "OOP Pillars Review",
+      "courseId": "c1",
+      "tutorId": "u2",
+      "days": [
+        "Fri"
+      ],
+      "start": "15:00",
+      "end": "17:00",
+      "max": 5,
+      "rate": 150,
+      "platform": "Google Meet",
+      "link": "https://meet.google.com/oop-pill-ars",
+      "learners": [
+        "u5",
+        "u6",
+        "u8",
+        "u9"
+      ],
+      "status": "completed",
+      "attendance": {
+        "u5": true,
+        "u6": true,
+        "u8": true,
+        "u9": false
+      }
+    },
+    {
+      "id": "k8",
+      "kind": "group",
+      "title": "Discrete Math: Logic",
+      "courseId": "c8",
+      "tutorId": "u2",
+      "days": [
+        "Thu"
+      ],
+      "start": "10:00",
+      "end": "12:00",
+      "max": 5,
+      "rate": 120,
+      "platform": "Zoom",
+      "link": "",
+      "learners": [
+        "u6",
+        "u7",
+        "u10"
+      ],
+      "status": "completed",
+      "attendance": {
+        "u6": true,
+        "u7": true,
+        "u10": true
+      }
+    },
+    {
+      "id": "k9",
+      "kind": "private",
+      "title": "Private \u00b7 Calculus I",
+      "courseId": "c3",
+      "tutorId": "u3",
+      "days": [
+        "Thu"
+      ],
+      "start": "10:00",
+      "end": "11:00",
+      "max": 1,
+      "rate": 180,
+      "platform": "Zoom",
+      "link": "https://zoom.us/j/9876543210",
+      "learners": [
+        "u5"
+      ],
+      "status": "open",
+      "attendance": {}
+    },
+    {
+      "id": "k10",
+      "kind": "group",
+      "title": "Integration Drills",
+      "courseId": "c3",
+      "tutorId": "u3",
+      "days": [
+        "Tue"
+      ],
+      "start": "13:00",
+      "end": "15:00",
+      "max": 5,
+      "rate": 120,
+      "platform": "Zoom",
+      "link": "",
+      "learners": [
+        "u5",
+        "u6"
+      ],
+      "status": "completed",
+      "attendance": {
+        "u5": true,
+        "u6": true
+      }
+    },
+    {
+      "id": "k11",
+      "kind": "group",
+      "title": "Sketching Basics",
+      "courseId": "c5",
+      "tutorId": "u4",
+      "days": [
+        "Wed"
+      ],
+      "start": "10:00",
+      "end": "12:00",
+      "max": 6,
+      "rate": 100,
+      "platform": "Google Meet",
+      "link": "",
+      "learners": [
+        "u7"
+      ],
+      "status": "completed",
+      "attendance": {
+        "u7": true
+      }
+    }
+  ],
+  "requests": [
+    {
+      "id": "r1",
+      "type": "join",
+      "learnerId": "u6",
+      "tutorId": "u2",
+      "classId": "k1",
+      "courseId": "c1",
+      "message": "Can I join? I keep getting stuck on loops.",
+      "status": "pending",
+      "at": 1794143408513
+    },
+    {
+      "id": "r2",
+      "type": "private",
+      "learnerId": "u7",
+      "tutorId": "u2",
+      "courseId": "c1",
+      "day": "Mon",
+      "start": "10:00",
+      "end": "11:00",
+      "message": "First time coding \u2014 I need help setting up Java.",
+      "status": "pending",
+      "at": 1794150608513
+    },
+    {
+      "id": "r3",
+      "type": "join",
+      "learnerId": "u9",
+      "tutorId": "u4",
+      "classId": "k5",
+      "courseId": "c5",
+      "message": "",
+      "status": "pending",
+      "at": 1794089408513
+    },
+    {
+      "id": "r4",
+      "type": "join",
+      "learnerId": "u5",
+      "tutorId": "u3",
+      "classId": "k3",
+      "courseId": "c3",
+      "message": "Midterms next week!",
+      "status": "declined",
+      "at": 1793981408513
+    }
+  ],
+  "reviews": [
+    {
+      "id": "v1",
+      "classId": "k8",
+      "learnerId": "u6",
+      "tutorId": "u2",
+      "rating": 5,
+      "comment": "Super clear explanations, and the practice sets were perfect.",
+      "at": 1793815808513
+    },
+    {
+      "id": "v2",
+      "classId": "k8",
+      "learnerId": "u7",
+      "tutorId": "u2",
+      "rating": 4,
+      "comment": "Fun session, just a little fast at the end.",
+      "at": 1793815808513
+    },
+    {
+      "id": "v3",
+      "classId": "k10",
+      "learnerId": "u5",
+      "tutorId": "u3",
+      "rating": 5,
+      "comment": "Made calculus not scary anymore!",
+      "at": 1793383808513
+    },
+    {
+      "id": "v4",
+      "classId": "k10",
+      "learnerId": "u6",
+      "tutorId": "u3",
+      "rating": 5,
+      "comment": "Best tutor for integrals.",
+      "at": 1793383808513
+    },
+    {
+      "id": "v5",
+      "classId": "k11",
+      "learnerId": "u7",
+      "tutorId": "u4",
+      "rating": 4,
+      "comment": "Great tips on sketch proportions.",
+      "at": 1793124608513
+    }
+  ],
+  "xp": {
+    "u2": 520,
+    "u3": 410,
+    "u4": 260,
+    "u5": 340,
+    "u6": 120,
+    "u7": 90,
+    "u8": 60,
+    "u9": 75,
+    "u10": 40
+  },
+  "today": {
+    "u5": 20,
+    "u2": 30
+  },
+  "streak": {
+    "u2": 12,
+    "u3": 4,
+    "u4": 3,
+    "u5": 6,
+    "u6": 2,
+    "u7": 1
+  }
+}

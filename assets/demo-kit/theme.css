@@ -1,0 +1,12 @@
+/* AraLinks theme tokens, taken from demo/index.html.
+   brand = Sparty red (buttons, logo, active nav). green = success only. red = errors. */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap');
+:root{
+  --brand:#F2464C;--brand-d:#C4232C;--brand-l:#FFE6E5;--brand-b:#FFB7B4;
+  --green:#58CC02;--green-d:#58A700;--green-l:#D7FFB8;
+  --blue:#1CB0F6;--blue-d:#1899D6;--blue-l:#DDF4FF;--blue-b:#84D8FF;
+  --red:#FF4B4B;--red-d:#EA2B2B;--red-l:#FFDFE0;
+  --yellow:#FFC800;--yellow-d:#E5A400;--yellow-l:#FFF5D3;
+  --orange:#FF9600;--purple:#CE82FF;
+  --ink:#3C3C3C;--muted:#777;--faint:#AFAFAF;--line:#E5E5E5;--line-d:#CECECE;--soft:#F7F7F7;--bg:#fff;
+}

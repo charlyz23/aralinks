@@ -1,0 +1,66 @@
+[
+  {
+    "id": "c1",
+    "name": "Java Programming",
+    "category": "Computer Science/IT",
+    "type": "Course",
+    "icon": "\u2615",
+    "color": "#FF9600"
+  },
+  {
+    "id": "c2",
+    "name": "Data Structures",
+    "category": "Computer Science/IT",
+    "type": "Course",
+    "icon": "\ud83c\udf33",
+    "color": "#58CC02"
+  },
+  {
+    "id": "c3",
+    "name": "Calculus I",
+    "category": "Engineering",
+    "type": "Course",
+    "icon": "\ud83d\udcc8",
+    "color": "#1CB0F6"
+  },
+  {
+    "id": "c4",
+    "name": "Physics for Engineers",
+    "category": "Engineering",
+    "type": "Course",
+    "icon": "\ud83e\uddf2",
+    "color": "#CE82FF"
+  },
+  {
+    "id": "c5",
+    "name": "Architectural Drafting",
+    "category": "Architecture",
+    "type": "Course",
+    "icon": "\ud83d\udcd0",
+    "color": "#FF4B4B"
+  },
+  {
+    "id": "c6",
+    "name": "Circuit Analysis",
+    "category": "Engineering",
+    "type": "Course",
+    "icon": "\u26a1",
+    "color": "#E5A400"
+  },
+  {
+    "id": "c7",
+    "name": "UI/UX Design",
+    "category": "Skills",
+    "type": "Skill",
+    "icon": "\ud83c\udfa8",
+    "color": "#2B70C9"
+  },
+  {
+    "id": "c8",
+    "name": "Discrete Math",
+    "category": "Computer Science/IT",
+    "type": "Course",
+    "icon": "\ud83d\udd22",
+    "color": "#00B894"
+  }
+]

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="214" viewBox="0 0 200 214" role="img" aria-label="Sparty, Crimson Gold">
+  <defs>
+    <radialGradient id="4-body" cx="36%" cy="24%" r="85%"><stop offset="0" stop-color="#E67A7E"/><stop offset=".4" stop-color="#C8323A"/><stop offset=".82" stop-color="#A0222B"/><stop offset="1" stop-color="#7E1820"/></radialGradient>
+    <radialGradient id="4-limb" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#E67A7E"/><stop offset=".6" stop-color="#C8323A"/><stop offset="1" stop-color="#7E1820"/></radialGradient>
+    <linearGradient id="4-visor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2A0A0E"/><stop offset="1" stop-color="#120305"/></linearGradient>
+    <linearGradient id="4-shield" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#F6CD74"/><stop offset=".55" stop-color="#E0A940"/><stop offset="1" stop-color="#B9832A"/></linearGradient>
+    <linearGradient id="4-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF6E0"/><stop offset="1" stop-color="#F3D9A6"/></linearGradient>
+    <linearGradient id="4-plume" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#A0222B"/><stop offset="1" stop-color="#E67A7E"/></linearGradient>
+    <filter id="4-blur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="4-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter>
+    <filter id="4-glow" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="214"><feGaussianBlur stdDeviation="2.4"/></filter>
+  </defs>
+  <g transform="translate(0 12)">
+  <ellipse cx="100" cy="190" rx="58" ry="7" fill="#000" opacity=".14" filter="url(#4-blur)"/>
+  <ellipse cx="160" cy="124" rx="12" ry="19" fill="url(#4-limb)" transform="rotate(-22 160 124)"/>
+  
+  
+  <path d="M100 22 C142 22 165 55 165 102 C165 146 157 174 121 178 L79 178 C44 174 35 146 35 102 C35 55 58 22 100 22 Z" fill="url(#4-body)"/>
+  <ellipse cx="70" cy="48" rx="17" ry="8" fill="#fff" opacity=".45" transform="rotate(-30 70 48)" filter="url(#4-soft)"/>
+  <ellipse cx="76" cy="179" rx="21" ry="11" fill="url(#4-limb)"/>
+  <ellipse cx="124" cy="179" rx="21" ry="11" fill="url(#4-limb)"/>
+  <rect x="50" y="72" width="100" height="48" rx="24.0" fill="#7E1820" opacity=".55"/>
+  <rect x="50" y="70" width="100" height="48" rx="24.0" fill="url(#4-visor)"/>
+  <path d="M60 76 Q100.0 70 140 76" stroke="#fff" stroke-width="3" opacity=".16" fill="none" stroke-linecap="round"/>
+  
+    <g stroke-linecap="round" fill="none">
+      <g stroke="#FFC864" stroke-width="7" opacity=".85" filter="url(#4-glow)"><path d="M71.0 98.0 Q79.0 88.0 87.0 98.0"/><path d="M113.0 98.0 Q121.0 88.0 129.0 98.0"/><path d="M95.0 106.0 Q100.0 111.0 105.0 106.0"/></g>
+      <g fill="#FFC864" opacity=".85" filter="url(#4-glow)"></g>
+      <g stroke="#FFF1D6" stroke-width="4.5"><path d="M71.0 98.0 Q79.0 88.0 87.0 98.0"/><path d="M113.0 98.0 Q121.0 88.0 129.0 98.0"/></g>
+      <path d="M95.0 106.0 Q100.0 111.0 105.0 106.0" stroke="#FFF1D6" stroke-width="3.2"/>
+    </g>
+    <g fill="#FFF1D6"></g>
+  <g transform="translate(14 110) scale(1) rotate(0 27 34)">
+    <path d="M-1 3 Q27 -6 55 3 L55 27 C55 50 38 63 27 70 C16 63 -1 50 -1 27 Z" fill="#7E1820" opacity=".35" transform="translate(2 3)"/>
+    <path d="M0 3 Q27 -5 54 3 L54 27 C54 49 37 62 27 68 C17 62 0 49 0 27 Z" fill="url(#4-shield)" stroke="url(#4-rim)" stroke-width="4.5" stroke-linejoin="round"/>
+    <path d="M6 8 Q16 4 26 3.5 L26 60 C16 54 6 44 6 28 Z" fill="#fff" opacity=".14"/>
+    <path d="M15 50 L27 18 L39 50" stroke="#8E1C24" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <ellipse cx="69" cy="136" rx="10" ry="12" fill="url(#4-limb)"/>
+  </g>
+</svg>

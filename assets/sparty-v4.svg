@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="320" viewBox="0 0 260 320" role="img" aria-label="Sparty, Tomato Navy">
+  <defs>
+    <radialGradient id="v4-helm" cx="40%" cy="20%" r="88%"><stop offset="0" stop-color="#FF8A72"/><stop offset=".55" stop-color="#F2553F"/><stop offset="1" stop-color="#D23E2E"/></radialGradient>
+    <linearGradient id="v4-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F3E66"/><stop offset="1" stop-color="#22304F"/></linearGradient>
+    <linearGradient id="v4-plume" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#E8442F"/><stop offset=".6" stop-color="#F96A45"/><stop offset="1" stop-color="#FF9B6A"/></linearGradient>
+    <radialGradient id="v4-body" cx="38%" cy="26%" r="82%"><stop offset="0" stop-color="#FF8A72"/><stop offset=".6" stop-color="#F2553F"/><stop offset="1" stop-color="#D23E2E"/></radialGradient>
+    <radialGradient id="v4-arm" cx="38%" cy="30%" r="80%"><stop offset="0" stop-color="#FF8A72"/><stop offset="1" stop-color="#F2553F"/></radialGradient>
+    <radialGradient id="v4-leg" cx="38%" cy="25%" r="85%"><stop offset="0" stop-color="#2F3E66"/><stop offset="1" stop-color="#22304F"/></radialGradient>
+    <linearGradient id="v4-belt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F3E66"/><stop offset="1" stop-color="#22304F"/></linearGradient>
+    <radialGradient id="v4-face" cx="50%" cy="62%" r="64%"><stop offset="0" stop-color="#FFF3EA"/><stop offset=".72" stop-color="#FBE2D4"/><stop offset="1" stop-color="#EEC4B2"/></radialGradient>
+    <linearGradient id="v4-rim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B9473F" stop-opacity=".35"/><stop offset=".32" stop-color="#B9473F" stop-opacity="0"/></linearGradient>
+    <radialGradient id="v4-blush"><stop offset="0" stop-color="#F28C78" stop-opacity=".9"/><stop offset=".55" stop-color="#F49F89" stop-opacity=".5"/><stop offset="1" stop-color="#F7B9A6" stop-opacity="0"/></radialGradient>
+    <radialGradient id="v4-eye" cx="40%" cy="30%" r="80%"><stop offset="0" stop-color="#3A3333"/><stop offset="1" stop-color="#161212"/></radialGradient>
+    <radialGradient id="v4-shadow"><stop offset="0" stop-color="#7A3A30" stop-opacity=".28"/><stop offset="1" stop-color="#7A3A30" stop-opacity="0"/></radialGradient>
+    <radialGradient id="v4-ao"><stop offset="0" stop-color="#5E1E22" stop-opacity=".4"/><stop offset="1" stop-color="#5E1E22" stop-opacity="0"/></radialGradient>
+    <clipPath id="v4-head-clip"><path d="M130 56 C198 56 230 94 230 146 C230 190 194 210 130 210 C66 210 30 190 30 146 C30 94 62 56 130 56 Z"/></clipPath>
+    <clipPath id="v4-torso-clip"><path d="M130 192 C160 192 175 210 175 234 C175 258 158 270 130 270 C102 270 85 258 85 234 C85 210 100 192 130 192 Z"/></clipPath>
+  </defs>
+  <g transform="translate(0 14)">
+    <ellipse cx="130" cy="288" rx="62" ry="11" fill="url(#v4-shadow)"/>
+    <g transform="translate(130 236) scale(1.08 0.96) translate(-130 -236)">
+      <rect x="101" y="242" width="27" height="40" rx="13.5" fill="url(#v4-leg)"/>
+      <rect x="132" y="242" width="27" height="40" rx="13.5" fill="url(#v4-leg)"/>
+      <ellipse cx="84" cy="230" rx="13" ry="23" fill="url(#v4-arm)" transform="rotate(16 84 230)"/>
+      <ellipse cx="184" cy="216" rx="13" ry="23" fill="url(#v4-arm)" transform="rotate(-40 184 216)"/>
+      <path d="M130 192 C160 192 175 210 175 234 C175 258 158 270 130 270 C102 270 85 258 85 234 C85 210 100 192 130 192 Z" fill="url(#v4-body)"/>
+      <g clip-path="url(#v4-torso-clip)"><path d="M80 236 Q130 248 180 236 L180 250 Q130 262 80 250 Z" fill="url(#v4-belt)"/></g>
+      <rect x="122" y="241" width="16" height="12" rx="4" fill="#F6C66B"/>
+      <path d="M122 228 L130 212 L138 228" stroke="#FFE9D9" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <ellipse cx="130" cy="202" rx="54" ry="14" fill="url(#v4-ao)"/>
+    <g transform="translate(130 140) scale(1.1 0.94) translate(-130 -140)">
+      <path d="M124 60 C116 38 124 20 142 13 C152 9 164 11 172 4 C171 14 166 19 160 22 C171 22 181 17 192 19 C186 27 177 31 168 33 C178 35 187 40 193 49 C179 48 167 44 157 42 C147 42 140 50 138 60 Z" fill="url(#v4-plume)"/>
+      <path d="M136 52 Q152 38 176 33" stroke="#E8442F" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <rect x="120" y="50" width="20" height="12" rx="5" fill="#22304F"/>
+      <path d="M130 56 C198 56 230 94 230 146 C230 190 194 210 130 210 C66 210 30 190 30 146 C30 94 62 56 130 56 Z" fill="url(#v4-helm)"/>
+      <path d="M56 148 C56 122 80 110 130 110 C180 110 204 122 204 148 C204 182 174 200 130 200 C86 200 56 182 56 148 Z" fill="url(#v4-face)"/>
+      <path d="M56 148 C56 122 80 110 130 110 C180 110 204 122 204 148 C204 182 174 200 130 200 C86 200 56 182 56 148 Z" fill="url(#v4-rim)"/>
+      
+      <g clip-path="url(#v4-head-clip)"><path d="M20 116 C60 96 200 96 240 116 L240 130 C206 116 172 114 152 116 Q141 118 135 128 Q130 135 125 128 Q119 118 108 116 C88 114 54 116 20 130 Z" fill="url(#v4-band)"/></g>
+      <ellipse cx="82" cy="174" rx="22" ry="14" fill="url(#v4-blush)"/>
+      <ellipse cx="178" cy="174" rx="22" ry="14" fill="url(#v4-blush)"/>
+      <ellipse cx="98" cy="162" rx="10.5" ry="13" fill="url(#v4-eye)"/><ellipse cx="162" cy="162" rx="10.5" ry="13" fill="url(#v4-eye)"/>
+      <path d="M121 159 L139 159 Q138 171 130 171 Q122 171 121 159 Z" fill="#2A1818"/><path d="M124 167 Q130 163 136 167 Q134 171 130 171 Q126 171 124 167 Z" fill="#F28C8C"/>
+    </g>
+  </g>
+</svg>

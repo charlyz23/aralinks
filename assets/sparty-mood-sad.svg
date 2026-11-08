@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="230" viewBox="0 0 200 230" role="img" aria-label="Sparty, Sad">
+  <defs>
+    <radialGradient id="mo-sad-body" cx="36%" cy="24%" r="85%"><stop offset="0" stop-color="#FF9A96"/><stop offset=".4" stop-color="#F2464C"/><stop offset=".82" stop-color="#C4232C"/><stop offset="1" stop-color="#9E1820"/></radialGradient>
+    <radialGradient id="mo-sad-limb" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#FF9A96"/><stop offset=".6" stop-color="#F2464C"/><stop offset="1" stop-color="#9E1820"/></radialGradient>
+    <linearGradient id="mo-sad-visor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A0E16"/><stop offset="1" stop-color="#1A0407"/></linearGradient>
+    <linearGradient id="mo-sad-plume" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#C4232C"/><stop offset="1" stop-color="#FF9A96"/></linearGradient>
+    <filter id="mo-sad-blur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="mo-sad-soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter>
+    <filter id="mo-sad-glow" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="230"><feGaussianBlur stdDeviation="2.4"/></filter>
+  </defs>
+  <g transform="translate(0 22)">
+    <ellipse cx="100" cy="190" rx="58.0" ry="7.0" fill="#000" opacity=".14" filter="url(#mo-sad-blur)"/>
+    
+    <g transform="translate(100 190) scale(1.04 .95) translate(-100 -190)">
+      <ellipse cx="30" cy="146" rx="12" ry="19" fill="url(#mo-sad-limb)" transform="rotate(12 30 146)"/><ellipse cx="170" cy="146" rx="12" ry="19" fill="url(#mo-sad-limb)" transform="rotate(-12 170 146)"/>
+      <g transform="rotate(34 104 50)">
+        <g transform="translate(0 22)">
+          <path d="M96 26 C90 8 104 -6 124 -8 C140 -9 150 -2 156 6 C146 4 138 6 132 10 C142 10 152 14 158 22 C146 20 134 20 124 22 C114 24 106 28 104 30 Z" fill="url(#mo-sad-plume)"/>
+        </g>
+      </g>
+      <path d="M100 44 C152 44 174 78 174 118 C174 158 148 178 100 178 C52 178 26 158 26 118 C26 78 48 44 100 44 Z" fill="url(#mo-sad-body)"/>
+      <ellipse cx="70" cy="70" rx="17" ry="8" fill="#fff" opacity=".45" transform="rotate(-30 70 70)" filter="url(#mo-sad-soft)"/>
+      <ellipse cx="76" cy="179" rx="21" ry="11" fill="url(#mo-sad-limb)"/>
+      <ellipse cx="124" cy="179" rx="21" ry="11" fill="url(#mo-sad-limb)"/>
+      <rect x="44" y="88" width="112" height="50" rx="25.0" fill="#9E1820" opacity=".55"/>
+      <rect x="44" y="86" width="112" height="50" rx="25.0" fill="url(#mo-sad-visor)"/>
+      <path d="M54 92 Q100 86 146 92" stroke="#fff" stroke-width="3" opacity=".16" fill="none" stroke-linecap="round"/>
+      <g opacity=".85" filter="url(#mo-sad-glow)"><path d="M71 109 Q79 117 87 109" stroke="#FF6B6B" stroke-width="7.5" fill="none" stroke-linecap="round"/><path d="M113 109 Q121 117 129 109" stroke="#FF6B6B" stroke-width="7.5" fill="none" stroke-linecap="round"/><path d="M70 104 L85 99" stroke="#FF6B6B" stroke-width="6" stroke-linecap="round"/><path d="M130 104 L115 99" stroke="#FF6B6B" stroke-width="6" stroke-linecap="round"/><path d="M95 128 Q100 123 105 128" stroke="#FF6B6B" stroke-width="6.2" fill="none" stroke-linecap="round"/></g>
+      <path d="M71 109 Q79 117 87 109" stroke="#FFE3E3" stroke-width="4.5" fill="none" stroke-linecap="round"/><path d="M113 109 Q121 117 129 109" stroke="#FFE3E3" stroke-width="4.5" fill="none" stroke-linecap="round"/><path d="M70 104 L85 99" stroke="#FFE3E3" stroke-width="3" stroke-linecap="round"/><path d="M130 104 L115 99" stroke="#FFE3E3" stroke-width="3" stroke-linecap="round"/><path d="M95 128 Q100 123 105 128" stroke="#FFE3E3" stroke-width="3.2" fill="none" stroke-linecap="round"/>
+    </g>
+    <path d="M66 128 C62 136 62 141 66 141 C70 141 70 136 66 128 Z" fill="#9AD8FF"/>
+  </g>
+</svg>

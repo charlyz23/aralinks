@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="220" viewBox="0 0 200 220" role="img" aria-label="Sparty, open helmet">
+  <ellipse cx="100" cy="210" rx="56" ry="6" fill="#000" opacity=".10"/>
+  <ellipse cx="42" cy="150" rx="10" ry="17" fill="#EE6B69" transform="rotate(18 42 150)"/>
+  <ellipse cx="163" cy="104" rx="10" ry="18" fill="#EE6B69" transform="rotate(35 163 104)"/>
+  <path d="M100 62 C140 62 160 90 160 130 C160 172 152 198 120 202 L80 202 C48 198 40 172 40 130 C40 90 60 62 100 62 Z" fill="#FF8A87"/>
+  <ellipse cx="100" cy="182" rx="38" ry="18" fill="#FFB9B3"/>
+  <ellipse cx="77" cy="203" rx="19" ry="9" fill="#EE6B69"/>
+  <ellipse cx="123" cy="203" rx="19" ry="9" fill="#EE6B69"/>
+  <g transform="translate(0 -4)">
+  <ellipse cx="100" cy="130" rx="36" ry="29" fill="#FFF3EA"/>
+  <ellipse cx="86" cy="126" rx="7" ry="9" fill="#3C3C3C"/><ellipse cx="114" cy="126" rx="7" ry="9" fill="#3C3C3C"/>
+  <circle cx="88.5" cy="122.5" r="2.4" fill="#fff"/><circle cx="116.5" cy="122.5" r="2.4" fill="#fff"/>
+  <ellipse cx="80" cy="141" rx="6" ry="3.5" fill="#FF9AA2"/>
+  <ellipse cx="120" cy="141" rx="6" ry="3.5" fill="#FF9AA2"/>
+  <path d="M92 139 L108 139 Q107 150 100 150 Q93 150 92 139 Z" fill="#3C3C3C"/><path d="M95 146.5 Q100 143 105 146.5 Q103 150 100 150 Q97 150 95 146.5 Z" fill="#FF9AA2"/>
+  </g>
+  <path d="M42 104 C42 66 66 46 100 46 C134 46 158 66 158 104 Z" fill="#E85A5E"/>
+  <rect x="38" y="96" width="124" height="14" rx="7" fill="#E85A5E"/>
+  <path d="M44 103 L156 103" stroke="#FFD3CF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M96 48 C92 24 114 6 142 10 C166 14 180 34 174 60 C164 44 150 36 132 38 C116 40 106 46 104 50 Z" fill="#FF6F73"/>
+  <path d="M106 40 L112 26" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/><path d="M118 36 L128 22" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/><path d="M131 34 L143 22" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/><path d="M144 35 L157 27" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/><path d="M155 41 L167 38" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="220" viewBox="0 0 200 220" role="img" aria-label="Sparty, mohawk crest">
+  <ellipse cx="100" cy="210" rx="56" ry="6" fill="#000" opacity=".10"/>
+  <ellipse cx="42" cy="150" rx="10" ry="17" fill="#EE6B69" transform="rotate(18 42 150)"/>
+  <ellipse cx="158" cy="150" rx="10" ry="17" fill="#EE6B69" transform="rotate(-18 158 150)"/>
+  <path d="M100 62 C140 62 160 90 160 130 C160 172 152 198 120 202 L80 202 C48 198 40 172 40 130 C40 90 60 62 100 62 Z" fill="#FF8A87"/>
+  <ellipse cx="100" cy="182" rx="38" ry="18" fill="#FFB9B3"/>
+  <ellipse cx="77" cy="203" rx="19" ry="9" fill="#EE6B69"/>
+  <ellipse cx="123" cy="203" rx="19" ry="9" fill="#EE6B69"/>
+  <g transform="translate(0 0)">
+  <ellipse cx="100" cy="130" rx="36" ry="29" fill="#FFF3EA"/>
+  <g stroke="#3C3C3C" stroke-width="4.5" fill="none" stroke-linecap="round"><path d="M79 128 Q86 119 93 128"/><path d="M107 128 Q114 119 121 128"/></g>
+  <ellipse cx="80" cy="141" rx="6" ry="3.5" fill="#FF9AA2"/>
+  <ellipse cx="120" cy="141" rx="6" ry="3.5" fill="#FF9AA2"/>
+  <path d="M92 139 L108 139 Q107 150 100 150 Q93 150 92 139 Z" fill="#3C3C3C"/><path d="M95 146.5 Q100 143 105 146.5 Q103 150 100 150 Q97 150 95 146.5 Z" fill="#FF9AA2"/>
+  </g>
+  <path d="M40 110 C40 68 64 44 100 44 C136 44 160 68 160 110 Z" fill="#E85A5E"/>
+  <rect x="40" y="100" width="34" height="50" rx="17" fill="#E85A5E"/>
+  <rect x="126" y="100" width="34" height="50" rx="17" fill="#E85A5E"/>
+  <rect x="38" y="98" width="124" height="14" rx="7" fill="#E85A5E"/>
+  <path d="M46 105 L154 105" stroke="#FFD3CF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M84 50 C70 34 72 14 86 8 C94 4 106 4 114 8 C128 14 130 34 116 50 Z" fill="#FF6F73"/>
+  <path d="M100 46 L80 20" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/><path d="M100 46 L90 12" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/><path d="M100 46 L100 9" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/><path d="M100 46 L110 12" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/><path d="M100 46 L120 20" stroke="#FFB0AE" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

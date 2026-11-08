@@ -1,0 +1,1198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AraLinks Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand:#F2464C;--brand-d:#C4232C;--brand-l:#FFE6E5;--brand-b:#FFB7B4;
+  --green:#58CC02;--green-d:#58A700;--green-l:#D7FFB8;
+  --blue:#1CB0F6;--blue-d:#1899D6;--blue-l:#DDF4FF;--blue-b:#84D8FF;
+  --red:#FF4B4B;--red-d:#EA2B2B;--red-l:#FFDFE0;
+  --yellow:#FFC800;--yellow-d:#E5A400;--yellow-l:#FFF5D3;
+  --orange:#FF9600;--purple:#CE82FF;
+  --ink:#3C3C3C;--muted:#777;--faint:#AFAFAF;--line:#E5E5E5;--line-d:#CECECE;--soft:#F7F7F7;--bg:#fff;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:Nunito,system-ui,-apple-system,sans-serif;font-weight:700;color:var(--ink);background:var(--bg);line-height:1.4;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;font-weight:900;letter-spacing:-.01em}
+h1{font-size:28px}h2{font-size:22px}h3{font-size:17px}
+p{margin:0}
+a{color:var(--brand-d)}
+.muted{color:var(--muted)}.faint{color:var(--faint)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px}
+
+/* ---------- buttons ---------- */
+.btn{--bgc:var(--brand);--sh:var(--brand-d);--fg:#fff;font:inherit;font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.06em;
+  color:var(--fg);background:var(--bgc);border:2px solid transparent;border-radius:16px;padding:12px 18px;cursor:pointer;
+  box-shadow:0 4px 0 var(--sh);transition:transform .06s,box-shadow .06s,filter .1s;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;white-space:nowrap}
+.btn:hover{filter:brightness(1.05)}
+.btn:active{transform:translateY(4px);box-shadow:0 0 0 var(--sh)}
+.btn.blue{--bgc:var(--blue);--sh:var(--blue-d)}
+.btn.green{--bgc:var(--green);--sh:var(--green-d)}
+.btn.red{--bgc:var(--red);--sh:var(--red-d)}
+.btn.yellow{--bgc:var(--yellow);--sh:var(--yellow-d);--fg:#fff}
+.btn.ghost{--bgc:#fff;--sh:var(--line);--fg:var(--brand);border-color:var(--line)}
+.btn.ghost.red{--fg:var(--red)}
+.btn.ghost.green{--fg:var(--green-d)}
+.btn.ghost.plain{--fg:var(--muted)}
+.btn[disabled]{--bgc:var(--line);--sh:var(--line-d);--fg:var(--faint);cursor:not-allowed;filter:none}
+.btn[disabled]:active{transform:none;box-shadow:0 4px 0 var(--sh)}
+.btn.block{width:100%}
+.btn.sm{padding:8px 12px;font-size:12px;border-radius:12px;box-shadow:0 3px 0 var(--sh)}
+.btn.sm:active{transform:translateY(3px)}
+.linkbtn{background:none;border:0;font:inherit;font-weight:800;color:var(--blue);cursor:pointer;padding:0;text-transform:uppercase;letter-spacing:.05em;font-size:13px;color:var(--brand)}
+
+/* ---------- form ---------- */
+label.f{display:grid;gap:6px;font-size:14px;color:var(--muted)}
+.input,select.input,textarea.input{width:100%;font:inherit;font-weight:700;font-size:15px;color:var(--ink);background:var(--soft);border:2px solid var(--line);border-radius:12px;padding:11px 14px;outline:none;transition:border-color .1s}
+.input:focus{border-color:var(--brand-b);background:#fff}
+textarea.input{resize:vertical;min-height:84px}
+.input::placeholder{color:var(--faint)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;padding:7px 12px;border:2px solid var(--line);border-bottom-width:4px;border-radius:12px;cursor:pointer;font-weight:800;font-size:13px;color:var(--muted);background:#fff;user-select:none}
+.chip input:checked+span{border-color:var(--brand-b);background:var(--brand-l);color:var(--brand)}
+.chip input:focus-visible+span{outline:2px solid var(--brand)}
+.seg{display:inline-flex;border:2px solid var(--line);border-radius:14px;padding:3px;gap:3px;background:#fff}
+.seg button{font:inherit;font-weight:800;font-size:13px;letter-spacing:.05em;text-transform:uppercase;border:0;background:none;color:var(--muted);padding:8px 14px;border-radius:10px;cursor:pointer}
+.seg button.on{background:var(--brand-l);color:var(--brand)}
+
+/* ---------- surfaces ---------- */
+.card{border:2px solid var(--line);border-radius:18px;padding:18px;background:#fff}
+.panel-title{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:900;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:900;text-transform:uppercase;letter-spacing:.05em;padding:4px 10px;border-radius:99px;background:var(--soft);color:var(--muted);white-space:nowrap}
+.pill.green{background:var(--green-l);color:var(--green-d)}
+.pill.blue{background:var(--blue-l);color:var(--blue-d)}
+.pill.red{background:var(--red-l);color:var(--red-d)}
+.pill.yellow{background:var(--yellow-l);color:#B88400}
+.av{display:inline-grid;place-items:center;border-radius:50%;color:#fff;font-weight:900;flex:none;border:3px solid #fff}
+.empty{text-align:center;padding:28px 12px;color:var(--muted);display:grid;justify-items:center;gap:10px}
+.stack{display:grid;gap:14px}
+.hstack{display:flex;align-items:center;gap:10px}
+.between{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wrap{flex-wrap:wrap}
+
+table.t{width:100%;border-collapse:collapse;font-size:14px}
+table.t th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);font-weight:900;padding:8px 8px;border-bottom:2px solid var(--line)}
+table.t td{padding:12px 8px;border-bottom:2px solid var(--line);vertical-align:middle}
+table.t tr:last-child td{border-bottom:0}
+.tscroll{overflow-x:auto;margin:0 -4px;padding:0 4px}
+
+/* ---------- app layout ---------- */
+.app{display:grid;grid-template-columns:250px minmax(0,1fr) 340px;min-height:100vh}
+.app.norail{grid-template-columns:250px minmax(0,1fr)}
+.side{position:sticky;top:0;height:100vh;border-right:2px solid var(--line);padding:22px 14px;display:flex;flex-direction:column;gap:4px;background:#fff}
+.logo{display:flex;align-items:center;gap:8px;font-size:28px;font-weight:900;color:var(--brand);letter-spacing:-.03em;padding:0 10px 22px}
+.nav{display:flex;align-items:center;gap:14px;padding:9px 12px;border-radius:14px;border:2px solid transparent;text-transform:uppercase;font-weight:800;letter-spacing:.05em;color:var(--muted);font-size:14px;cursor:pointer;background:none;width:100%;text-align:left;font-family:inherit;position:relative}
+.nav:hover{background:var(--soft)}
+.nav.on{background:var(--brand-l);border-color:var(--brand-b);color:var(--brand)}
+.nav .ic{width:32px;height:32px;display:grid;place-items:center;font-size:24px;flex:none}
+.nav .badge{margin-left:auto;background:var(--red);color:#fff;border-radius:99px;font-size:12px;padding:1px 8px}
+.side .spacer{flex:1}
+.side .who{display:flex;align-items:center;gap:10px;padding:10px 12px;border-top:2px solid var(--line);margin-top:8px;padding-top:14px}
+.side .who small{display:block;color:var(--faint);font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.main{padding:28px 32px 60px;min-width:0}
+.main-inner{max-width:900px;margin:0 auto}
+.rail{position:sticky;top:0;height:100vh;overflow:auto;padding:28px 24px 28px 8px;display:grid;align-content:start;gap:16px}
+.pagehead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:20px;flex-wrap:wrap}
+.pagehead p{color:var(--muted);margin-top:4px}
+.mstats{display:none;gap:16px;margin-bottom:18px;font-size:17px;font-weight:900}
+.mstats span{display:inline-flex;gap:6px;align-items:center}
+
+.statrow{display:flex;gap:18px;font-size:18px;font-weight:900}
+.statrow span{display:inline-flex;align-items:center;gap:6px}
+.fire{color:var(--orange)}.gem{color:var(--blue)}.bolt{color:var(--yellow-d)}
+.prog{height:16px;background:var(--line);border-radius:99px;overflow:hidden;position:relative}
+.prog i{position:absolute;inset:0 auto 0 0;background:var(--yellow);border-radius:99px}
+.prog i::after{content:"";position:absolute;left:8px;right:8px;top:4px;height:4px;border-radius:9px;background:rgba(255,255,255,.35)}
+.prog.green i{background:var(--green)}
+.prog.blue i{background:var(--brand)}
+
+.tip{display:flex;gap:12px;align-items:flex-end}
+.bubble{position:relative;border:2px solid var(--line);border-radius:16px;padding:12px 14px;font-size:14px;background:#fff;flex:1}
+.bubble::before{content:"";position:absolute;left:-9px;bottom:16px;width:14px;height:14px;background:#fff;border-left:2px solid var(--line);border-bottom:2px solid var(--line);transform:rotate(45deg)}
+
+/* ---------- class cards ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.ccard{border:2px solid var(--line);border-bottom-width:5px;border-radius:20px;overflow:hidden;background:#fff;cursor:pointer;display:flex;flex-direction:column;transition:transform .1s}
+.ccard:hover{transform:translateY(-2px)}
+.ccard-top{position:relative;padding:16px 16px 22px;color:#fff;background:var(--c);
+  background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 8px,transparent 8px 16px)}
+.ccard-top h3{font-size:18px;line-height:1.2;margin:6px 0 4px;padding-right:8px}
+.ccard-top p{font-size:13px;opacity:.95}
+.ccard-ic{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:20px}
+.ccard-av{position:absolute;right:14px;bottom:-22px;box-shadow:0 2px 0 rgba(0,0,0,.08)}
+.ccard-body{padding:16px 16px 10px;display:grid;gap:6px;font-size:14px;color:var(--muted);flex:1}
+.slots{display:flex;align-items:center;gap:10px;margin-top:6px}
+.slots .prog{flex:1;height:12px}
+.slots span{font-size:13px;font-weight:900;color:var(--ink)}
+.ccard-foot{display:flex;align-items:center;justify-content:space-between;padding:10px 16px 16px;gap:8px}
+.star{color:var(--yellow-d);font-weight:900}
+
+.tcard{border:2px solid var(--line);border-bottom-width:5px;border-radius:20px;padding:18px;display:grid;gap:12px;cursor:pointer;background:#fff}
+.tcard:hover{transform:translateY(-2px)}
+.tag{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;padding:4px 9px;border-radius:10px;border:2px solid var(--line);color:var(--muted);background:#fff}
+
+/* class detail */
+.detail{display:grid;grid-template-columns:1.1fr 1fr;gap:20px;align-items:start}
+.hero-c{border-radius:20px;overflow:hidden;border:2px solid var(--line);border-bottom-width:5px}
+.hero-c .ccard-top{padding:22px 22px 30px}
+.hero-c .ccard-top h3{font-size:24px}
+.hero-c .ccard-av{bottom:-28px}
+.tutees{display:flex;gap:8px;flex-wrap:wrap}
+.tutees .dot{width:40px;height:40px;border-radius:50%;border:3px dashed var(--line-d)}
+.or{display:flex;align-items:center;gap:12px;color:var(--faint);font-weight:900;font-size:13px;letter-spacing:.1em}
+.or::before,.or::after{content:"";flex:1;height:2px;background:var(--line)}
+.lock{display:flex;gap:10px;align-items:center;background:var(--soft);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--muted)}
+.linkbox{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--green-l);border-radius:14px;padding:12px 14px;font-size:14px;color:var(--green-d);flex-wrap:wrap}
+
+/* stars */
+.stars{display:flex;gap:6px}
+.stars button{font-size:34px;line-height:1;background:none;border:0;cursor:pointer;color:var(--line);padding:2px;transition:transform .1s}
+.stars button.on{color:var(--yellow)}
+.stars button:hover{transform:scale(1.15)}
+
+/* auth */
+.auth{min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(180deg,#FFF3F2,#fff 60%)}
+.auth-top{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;max-width:1100px;width:100%;margin:0 auto}
+.auth-main{flex:1;display:grid;grid-template-columns:1fr 420px;gap:48px;align-items:center;max-width:1000px;width:100%;margin:0 auto;padding:12px 24px 48px}
+.auth-hero{display:grid;justify-items:center;text-align:center;gap:18px}
+.auth-hero h1{font-size:34px;line-height:1.15;max-width:440px}
+.auth-hero p{color:var(--muted);max-width:420px;font-size:17px}
+.tabs2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+.demo-acc{display:flex;flex-wrap:wrap;gap:8px}
+.demo-acc button{font:inherit;font-size:13px;font-weight:800;border:2px solid var(--line);border-bottom-width:4px;border-radius:12px;background:#fff;padding:6px 10px;cursor:pointer;color:var(--ink);display:inline-flex;gap:6px;align-items:center}
+.demo-acc button:active{border-bottom-width:2px;transform:translateY(2px)}
+
+/* sheet & celebration */
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:22px 24px calc(26px + env(safe-area-inset-bottom, 0px));transform:translateY(110%);transition:transform .22s cubic-bezier(.2,.9,.3,1.2)}
+.sheet.show{transform:none}
+.sheet.ok{background:var(--green-l);color:var(--green-d)}
+.sheet.err{background:var(--red-l);color:var(--red-d)}
+.sheet-in{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
+.sheet .ico{width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:30px;flex:none}
+.sheet h3{font-size:22px}
+.sheet .mono{opacity:.8;margin-top:4px;display:block}
+.overlay{position:fixed;inset:0;z-index:70;background:#fff;display:grid;place-items:center;padding:24px;animation:fade .2s}
+.overlay .in{position:relative;z-index:72;display:grid;justify-items:center;gap:16px;text-align:center;max-width:440px}
+.overlay h1{color:var(--brand);font-size:32px}
+.xpbox{display:inline-grid;border:2px solid var(--yellow);border-radius:16px;overflow:hidden;min-width:130px}
+.xpbox b{background:var(--yellow);color:#fff;font-size:12px;letter-spacing:.08em;padding:4px 10px;text-transform:uppercase}
+.xpbox span{padding:10px;font-size:22px;color:var(--yellow-d);font-weight:900}
+.bounce{animation:bounce 1s ease-in-out infinite alternate}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:71}
+.confetti i{position:absolute;top:-20px;width:10px;height:16px;border-radius:3px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+@keyframes fade{from{opacity:0}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.shake{animation:shake .25s 2}
+
+.oop{position:fixed;right:16px;bottom:16px;z-index:40}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){
+  .app{grid-template-columns:230px minmax(0,1fr)}
+  .rail{display:none}
+  .mstats{display:flex}
+}
+@media (max-width:860px){
+  .detail{grid-template-columns:1fr}
+  .auth-main{grid-template-columns:1fr;gap:20px}
+  .auth-hero h1{font-size:26px}
+  .auth-hero .big-m{display:none}
+}
+@media (max-width:760px){
+  .app,.app.norail{grid-template-columns:1fr}
+  .side{position:fixed;top:auto;bottom:0;left:0;right:0;height:auto;flex-direction:row;border-right:0;border-top:2px solid var(--line);z-index:30;padding:6px 8px calc(6px + env(safe-area-inset-bottom, 0px));justify-content:space-around;gap:2px}
+  .logo,.nav .lbl,.side .who,.side .spacer,.side .extra{display:none}
+  .nav{width:auto;padding:6px 10px;justify-content:center}
+  .nav .badge{position:absolute;top:0;right:0;margin:0;font-size:10px;padding:0 6px}
+  .main{padding:18px 16px 110px}
+  .row2{grid-template-columns:1fr}
+  .auth-top{padding:14px 16px}
+  .auth-main{padding:8px 16px 40px}
+  h1{font-size:24px}
+  .sheet{padding:18px 16px 22px}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div class="sheet" id="sheet"></div>
+
+<script>
+/* =========================================================
+   AraLinks — interactive demo (no backend).
+   Data model mirrors the proposal's classes:
+   User → Tutor / Learner / Administrator, Course, TutoringClass,
+   TutoringSession (private), Request, Review.
+   State is kept in this browser only (localStorage).
+   ========================================================= */
+const KEY = 'aralinks-demo-v1';
+const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const PLATFORMS = ['Google Meet','Zoom','Discord','Microsoft Teams','Face-to-face'];
+let S;
+const ui = { view:null, params:{}, browseMode:'classes', rateTarget:null, authTab:'login', q:'', subj:'', day:'', tq:'', tcourse:'', tmax:500 };
+
+/* ---------- seed data ---------- */
+function seed(){
+  const pw = 'demo123';
+  const avail = (days, s='09:00', e='17:00') => days.map(day => ({day, start:s, end:e}));
+  return {
+    me:null,
+    courses:[
+      {id:'c1',name:'Java Programming',category:'Computer Science/IT',type:'Course',icon:'☕',color:'#FF9600'},
+      {id:'c2',name:'Data Structures',category:'Computer Science/IT',type:'Course',icon:'🌳',color:'#58CC02'},
+      {id:'c3',name:'Calculus I',category:'Engineering',type:'Course',icon:'📈',color:'#1CB0F6'},
+      {id:'c4',name:'Physics for Engineers',category:'Engineering',type:'Course',icon:'🧲',color:'#CE82FF'},
+      {id:'c5',name:'Architectural Drafting',category:'Architecture',type:'Course',icon:'📐',color:'#FF4B4B'},
+      {id:'c6',name:'Circuit Analysis',category:'Engineering',type:'Course',icon:'⚡',color:'#E5A400'},
+      {id:'c7',name:'UI/UX Design',category:'Skills',type:'Skill',icon:'🎨',color:'#2B70C9'},
+      {id:'c8',name:'Discrete Math',category:'Computer Science/IT',type:'Course',icon:'🔢',color:'#00B894'},
+    ],
+    users:[
+      {id:'u1',role:'Administrator',srCode:'00-00001',name:'Admin Office',email:'admin@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#4B4B4B'},
+      {id:'u2',role:'Tutor',srCode:'23-01234',name:'Ben Reyes',email:'ben@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#FF9600',
+        program:'BS Computer Science',yearLevel:3,courses:['c1','c2','c8'],hourlyRate:200,mode:'Online',availability:avail(['Mon','Tue','Wed','Thu','Fri','Sat']),
+        bio:'3rd-year CS student. I make Java click with live coding and lots of tiny exercises.'},
+      {id:'u3',role:'Tutor',srCode:'22-04567',name:'Gia Santos',email:'gia@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#CE82FF',
+        program:'BS Electrical Engineering',yearLevel:4,courses:['c3','c4','c6'],hourlyRate:180,mode:'Online / Face-to-face',availability:avail(['Tue','Thu','Fri'],'10:00','18:00'),
+        bio:'Engineering dean\'s lister. Calculus is just patterns — I\'ll show you how to spot them.'},
+      {id:'u4',role:'Tutor',srCode:'23-07890',name:'Marco Dizon',email:'marco@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#FF4B4B',
+        program:'BS Architecture',yearLevel:3,courses:['c5','c7'],hourlyRate:150,mode:'Online',availability:avail(['Wed','Sat'],'09:00','17:00'),
+        bio:'Architecture student and freelance designer. Bring your plates, we\'ll fix the line weights.'},
+      {id:'u5',role:'Learner',srCode:'25-11111',name:'Cara Lim',email:'cara@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#1CB0F6',program:'BS Computer Science',yearLevel:1},
+      {id:'u6',role:'Learner',srCode:'24-22222',name:'Dan Cruz',email:'dan@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#58CC02',program:'BS Electronics Engineering',yearLevel:2},
+      {id:'u7',role:'Learner',srCode:'25-33333',name:'Ella Mendoza',email:'ella@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#FF86D0',program:'BS Architecture',yearLevel:1},
+      {id:'u8',role:'Learner',srCode:'25-44444',name:'Felix Tan',email:'felix@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#00B894',program:'BS Computer Science',yearLevel:1},
+      {id:'u9',role:'Learner',srCode:'24-55555',name:'Hana Ramos',email:'hana@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#2B70C9',program:'BS Information Technology',yearLevel:2},
+      {id:'u10',role:'Learner',srCode:'25-66666',name:'Ivan Garcia',email:'ivan@aralinks.edu',password:pw,university:'BatStateU – Alangilan',active:true,color:'#E5A400',program:'BS Civil Engineering',yearLevel:1},
+    ],
+    classes:[
+      {id:'k1',kind:'group',title:'Java Basics Bootcamp',courseId:'c1',tutorId:'u2',days:['Mon','Wed'],start:'15:00',end:'17:00',max:5,rate:150,platform:'Google Meet',link:'https://meet.google.com/abc-defg-hij',learners:['u5','u8','u9'],status:'open',attendance:{}},
+      {id:'k2',kind:'group',title:'Recursion & Linked Lists',courseId:'c2',tutorId:'u2',days:['Sat'],start:'09:00',end:'11:00',max:5,rate:120,platform:'Discord',link:'https://discord.gg/aralinks-dsa',learners:['u6','u7','u8','u9','u10'],status:'open',attendance:{}},
+      {id:'k3',kind:'group',title:'Limits & Derivatives Crash Course',courseId:'c3',tutorId:'u3',days:['Tue','Thu'],start:'13:00',end:'15:00',max:5,rate:150,platform:'Zoom',link:'https://zoom.us/j/1234567890',learners:['u6'],status:'open',attendance:{}},
+      {id:'k4',kind:'group',title:'Mechanics Problem-Set Party',courseId:'c4',tutorId:'u3',days:['Fri'],start:'16:00',end:'18:00',max:4,rate:100,platform:'Google Meet',link:'https://meet.google.com/xyz-mech-ppp',learners:['u6','u8','u9'],status:'open',attendance:{}},
+      {id:'k5',kind:'group',title:'Drafting 101: Line Weights',courseId:'c5',tutorId:'u4',days:['Wed'],start:'10:00',end:'12:00',max:6,rate:130,platform:'Google Meet',link:'',learners:[],status:'open',attendance:{}},
+      {id:'k6',kind:'group',title:'Figma in an Afternoon',courseId:'c7',tutorId:'u4',days:['Sat'],start:'13:00',end:'16:00',max:8,rate:100,platform:'Discord',link:'https://discord.gg/figma-afternoon',learners:['u7','u10'],status:'open',attendance:{}},
+      {id:'k7',kind:'group',title:'OOP Pillars Review',courseId:'c1',tutorId:'u2',days:['Fri'],start:'15:00',end:'17:00',max:5,rate:150,platform:'Google Meet',link:'https://meet.google.com/oop-pill-ars',learners:['u5','u6','u8','u9'],status:'completed',attendance:{u5:true,u6:true,u8:true,u9:false}},
+      {id:'k8',kind:'group',title:'Discrete Math: Logic',courseId:'c8',tutorId:'u2',days:['Thu'],start:'10:00',end:'12:00',max:5,rate:120,platform:'Zoom',link:'',learners:['u6','u7','u10'],status:'completed',attendance:{u6:true,u7:true,u10:true}},
+      {id:'k9',kind:'private',title:'Private · Calculus I',courseId:'c3',tutorId:'u3',days:['Thu'],start:'10:00',end:'11:00',max:1,rate:180,platform:'Zoom',link:'https://zoom.us/j/9876543210',learners:['u5'],status:'open',attendance:{}},
+      {id:'k10',kind:'group',title:'Integration Drills',courseId:'c3',tutorId:'u3',days:['Tue'],start:'13:00',end:'15:00',max:5,rate:120,platform:'Zoom',link:'',learners:['u5','u6'],status:'completed',attendance:{u5:true,u6:true}},
+      {id:'k11',kind:'group',title:'Sketching Basics',courseId:'c5',tutorId:'u4',days:['Wed'],start:'10:00',end:'12:00',max:6,rate:100,platform:'Google Meet',link:'',learners:['u7'],status:'completed',attendance:{u7:true}},
+    ],
+    requests:[
+      {id:'r1',type:'join',learnerId:'u6',tutorId:'u2',classId:'k1',courseId:'c1',message:'Can I join? I keep getting stuck on loops.',status:'pending',at:Date.now()-36e5*5},
+      {id:'r2',type:'private',learnerId:'u7',tutorId:'u2',courseId:'c1',day:'Mon',start:'10:00',end:'11:00',message:'First time coding — I need help setting up Java.',status:'pending',at:Date.now()-36e5*3},
+      {id:'r3',type:'join',learnerId:'u9',tutorId:'u4',classId:'k5',courseId:'c5',message:'',status:'pending',at:Date.now()-36e5*20},
+      {id:'r4',type:'join',learnerId:'u5',tutorId:'u3',classId:'k3',courseId:'c3',message:'Midterms next week!',status:'declined',at:Date.now()-36e5*50},
+    ],
+    reviews:[
+      {id:'v1',classId:'k8',learnerId:'u6',tutorId:'u2',rating:5,comment:'Super clear explanations, and the practice sets were perfect.',at:Date.now()-864e5*4},
+      {id:'v2',classId:'k8',learnerId:'u7',tutorId:'u2',rating:4,comment:'Fun session, just a little fast at the end.',at:Date.now()-864e5*4},
+      {id:'v3',classId:'k10',learnerId:'u5',tutorId:'u3',rating:5,comment:'Made calculus not scary anymore!',at:Date.now()-864e5*9},
+      {id:'v4',classId:'k10',learnerId:'u6',tutorId:'u3',rating:5,comment:'Best tutor for integrals.',at:Date.now()-864e5*9},
+      {id:'v5',classId:'k11',learnerId:'u7',tutorId:'u4',rating:4,comment:'Great tips on sketch proportions.',at:Date.now()-864e5*12},
+    ],
+    xp:{u2:520,u3:410,u4:260,u5:340,u6:120,u7:90,u8:60,u9:75,u10:40},
+    today:{u5:20,u2:30},
+    streak:{u2:12,u3:4,u4:3,u5:6,u6:2,u7:1},
+    log:[],
+  };
+}
+function load(){ try{ const raw = localStorage.getItem(KEY); if(raw){ S = JSON.parse(raw); return; } }catch(e){} S = seed(); }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+/* ---------- helpers ---------- */
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid = p => p + Math.random().toString(36).slice(2,8);
+const me = () => S.users.find(u => u.id === S.me);
+const user = id => S.users.find(u => u.id === id);
+const course = id => S.courses.find(c => c.id === id);
+const cls = id => S.classes.find(c => c.id === id);
+const mins = t => { const [h,m] = t.split(':').map(Number); return h*60+m; };
+const t12 = t => { let [h,m] = t.split(':').map(Number); const ap = h>=12?'PM':'AM'; h = h%12||12; return `${h}:${String(m).padStart(2,'0')} ${ap}`; };
+const sched = c => `${c.days.join(', ')} · ${t12(c.start)}–${t12(c.end)}`;
+const first = n => n.split(' ')[0];
+const initials = n => n.split(' ').map(x=>x[0]).slice(0,2).join('').toUpperCase();
+const avatar = (u, s=40, extra='') => `<span class="av ${extra}" style="width:${s}px;height:${s}px;background:${u.color};font-size:${Math.round(s*.38)}px" title="${esc(u.name)}">${initials(u.name)}</span>`;
+const isFull = c => c.learners.length >= c.max;
+const pct = (a,b) => Math.min(100, Math.round(a/b*100));
+function rating(tid){ // Tutor.computeAverageRating()
+  const r = S.reviews.filter(v => v.tutorId === tid);
+  return r.length ? { avg:(r.reduce((a,v)=>a+v.rating,0)/r.length).toFixed(1), n:r.length } : { avg:'New', n:0 };
+}
+function ago(t){ const m = Math.round((Date.now()-t)/6e4); if(m<1) return 'just now'; if(m<60) return m+'m ago'; const h=Math.round(m/60); if(h<24) return h+'h ago'; return Math.round(h/24)+'d ago'; }
+const statusPill = c => c.status==='completed' ? '<span class="pill green">Completed</span>'
+  : c.status==='cancelled' ? '<span class="pill red">Cancelled</span>'
+  : c.status==='removed' ? '<span class="pill red">Removed</span>'
+  : isFull(c) && c.kind==='group' ? '<span class="pill yellow">Full</span>' : '<span class="pill blue">Scheduled</span>';
+const reqPill = r => r.status==='pending' ? '<span class="pill yellow">Pending</span>' : r.status==='accepted' ? '<span class="pill green">Accepted</span>' : r.status==='cancelled' ? '<span class="pill">Cancelled</span>' : '<span class="pill red">Declined</span>';
+function gainXP(id, n){ S.xp[id] = (S.xp[id]||0) + n; S.today[id] = (S.today[id]||0) + n; }
+function logEvent(text){ S.log.unshift({text, at:Date.now()}); S.log = S.log.slice(0,30); }
+
+/* exception handling — mirrors the Java custom exceptions in the proposal */
+class AppError extends Error { constructor(name, msg){ super(msg); this.name = name; } }
+const fail = (name, msg) => { throw new AppError(name, msg); };
+
+/* ---------- mascot: Sparty (round "mochi" Spartan with a glowing visor and a feather crest) ----------
+   moods: happy (resting), wave (login), wow (celebration), sad (errors / empty states) */
+let mascotSeq = 0;
+function mascot(size=120, mood='happy'){
+  const k = 'sp' + (++mascotSeq), L = 79, R = 121, CY = 111, CX = 100;
+  const arc = (x,c,w) => `<path d="M${x-8} ${CY+4} Q${x} ${CY-6} ${x+8} ${CY+4}" stroke="${c}" stroke-width="${4.5+w}" fill="none" stroke-linecap="round"/>`;
+  const eyes = {
+    happy: (c,w) => `<circle cx="${L}" cy="${CY}" r="${6+w/2}" fill="${c}"/><circle cx="${R}" cy="${CY}" r="${6+w/2}" fill="${c}"/>`,
+    wave:  (c,w) => arc(L,c,w) + arc(R,c,w),
+    wow:   (c,w) => arc(L,c,w) + arc(R,c,w),
+    sad:   (c,w) => [L,R].map(x => `<path d="M${x-8} ${CY-2} Q${x} ${CY+6} ${x+8} ${CY-2}" stroke="${c}" stroke-width="${4.5+w}" fill="none" stroke-linecap="round"/>`).join('')
+                  + `<path d="M${L-9} ${CY-7} L${L+6} ${CY-12}" stroke="${c}" stroke-width="${3+w}" stroke-linecap="round"/><path d="M${R+9} ${CY-7} L${R-6} ${CY-12}" stroke="${c}" stroke-width="${3+w}" stroke-linecap="round"/>`,
+    love:  (c,w) => [L,R].map(x => `<path d="M${x} ${CY+7} C${x-11} ${CY-1} ${x-7} ${CY-11} ${x} ${CY-5} C${x+7} ${CY-11} ${x+11} ${CY-1} ${x} ${CY+7} Z" fill="${c}" stroke="${c}" stroke-width="${w}" stroke-linejoin="round"/>`).join(''),
+    sleepy:(c,w) => [L,R].map(x => `<path d="M${x-8} ${CY+1} Q${x} ${CY+5} ${x+8} ${CY+1}" stroke="${c}" stroke-width="${4+w}" fill="none" stroke-linecap="round"/>`).join(''),
+    fired: (c,w) => `<circle cx="${L}" cy="${CY+3}" r="${5+w/2}" fill="${c}"/><circle cx="${R}" cy="${CY+3}" r="${5+w/2}" fill="${c}"/><path d="M${L-10} ${CY-10} L${L+8} ${CY-4}" stroke="${c}" stroke-width="${4+w}" stroke-linecap="round"/><path d="M${R+10} ${CY-10} L${R-8} ${CY-4}" stroke="${c}" stroke-width="${4+w}" stroke-linecap="round"/>`,
+    surprised:(c,w) => `<circle cx="${L}" cy="${CY}" r="7.5" stroke="${c}" stroke-width="${3.6+w}" fill="none"/><circle cx="${R}" cy="${CY}" r="7.5" stroke="${c}" stroke-width="${3.6+w}" fill="none"/>`,
+    point: (c,w) => arc(L,c,w) + `<circle cx="${R}" cy="${CY}" r="${6+w/2}" fill="${c}"/>`,
+  }[mood] || null;
+  const mouth = {
+    happy: (c,w) => `<path d="M${CX-5} ${CY+12} Q${CX} ${CY+17} ${CX+5} ${CY+12}" stroke="${c}" stroke-width="${3.2+w}" fill="none" stroke-linecap="round"/>`,
+    wave:  (c,w) => `<path d="M${CX-7} ${CY+10} L${CX+7} ${CY+10} Q${CX+6} ${CY+20} ${CX} ${CY+20} Q${CX-6} ${CY+20} ${CX-7} ${CY+10} Z" fill="${c}" stroke="${c}" stroke-width="${1+w}" stroke-linejoin="round"/>`,
+    wow:   (c,w) => `<path d="M${CX-9} ${CY+9} L${CX+9} ${CY+9} Q${CX+8} ${CY+23} ${CX} ${CY+23} Q${CX-8} ${CY+23} ${CX-9} ${CY+9} Z" fill="${c}" stroke="${c}" stroke-width="${1+w}" stroke-linejoin="round"/>`,
+    sad:   (c,w) => `<path d="M${CX-5} ${CY+17} Q${CX} ${CY+12} ${CX+5} ${CY+17}" stroke="${c}" stroke-width="${3.2+w}" fill="none" stroke-linecap="round"/>`,
+    love:  (c,w) => `<path d="M${CX-5} ${CY+12} Q${CX} ${CY+17} ${CX+5} ${CY+12}" stroke="${c}" stroke-width="${3.2+w}" fill="none" stroke-linecap="round"/>`,
+    sleepy:(c,w) => `<ellipse cx="${CX}" cy="${CY+15}" rx="2.6" ry="2" fill="${c}" stroke="${c}" stroke-width="${w}"/>`,
+    fired: (c,w) => `<path d="M${CX-6} ${CY+15} L${CX+6} ${CY+15}" stroke="${c}" stroke-width="${3.4+w}" stroke-linecap="round"/>`,
+    surprised:(c,w) => `<ellipse cx="${CX}" cy="${CY+15}" rx="4" ry="5" stroke="${c}" stroke-width="${3+w}" fill="none"/>`,
+    point: (c,w) => `<path d="M${CX-7} ${CY+10} L${CX+7} ${CY+10} Q${CX+6} ${CY+20} ${CX} ${CY+20} Q${CX-6} ${CY+20} ${CX-7} ${CY+10} Z" fill="${c}" stroke="${c}" stroke-width="${1+w}" stroke-linejoin="round"/>`,
+  }[mood];
+  const E = eyes || (()=>''), M = mouth || (()=>'');
+  const arms = { happy:[[24,130,24],[176,130,-24]], wave:[[24,130,24],[172,84,32]], wow:[[32,80,-28],[168,80,28]], sad:[[30,146,12],[170,146,-12]], love:[[24,130,24],[176,130,-24]], sleepy:[[30,146,12],[170,146,-12]], fired:[[22,120,40],[178,120,-40]], surprised:[[22,112,62],[178,112,-62]], point:[[24,130,24],[174,102,-62]] }[mood] || [[24,130,24],[176,130,-24]];
+  const tf = { wave:'rotate(-6 100 190)', wow:'translate(0 -14)', sleepy:'rotate(-7 100 190)', surprised:'translate(0 -4)', point:'rotate(4 100 190)', love:'rotate(-3 100 190)', sad:'translate(100 190) scale(1.04 .95) translate(-100 -190)' }[mood] || '';
+  const plumeRot = { wave:-8, wow:-14, sad:34, sleepy:22, surprised:-18, fired:-8, point:-4 }[mood] || 0;
+  const spark = (x,y,s) => `<path transform="translate(${x} ${y}) scale(${s})" d="M0 -9 Q1.5 -1.5 9 0 Q1.5 1.5 0 9 Q-1.5 1.5 -9 0 Q-1.5 -1.5 0 -9 Z" fill="#FFC864"/>`;
+  const extras = mood==='wow' ? spark(30,40,1)+spark(172,30,.8)+spark(182,112,.6)
+               : mood==='sad' ? '<path d="M66 128 C62 136 62 141 66 141 C70 141 70 136 66 128 Z" fill="#9AD8FF"/>'
+               : mood==='love' ? [[168,34,1],[184,60,.7],[30,52,.6]].map(([x,y,s]) => `<path transform="translate(${x} ${y}) scale(${s})" d="M0 7 C-11 -1 -7 -11 0 -5 C7 -11 11 -1 0 7 Z" fill="#FF6B8A"/>`).join('')
+               : mood==='sleepy' ? '<text x="150" y="40" font-family="Nunito, Arial, sans-serif" font-weight="900" font-size="22" fill="#C4232C">Z</text><text x="170" y="24" font-family="Nunito, Arial, sans-serif" font-weight="900" font-size="15" fill="#E57373">z</text>'
+               : mood==='fired' ? '<g stroke="#C4232C" stroke-width="3.4" fill="none" stroke-linecap="round" transform="translate(160 40)"><path d="M-8 -3 Q-3 -3 -3 -8"/><path d="M8 -3 Q3 -3 3 -8"/><path d="M-8 3 Q-3 3 -3 8"/><path d="M8 3 Q3 3 3 8"/></g><path d="M30 70 C25 80 25 86 30 86 C35 86 35 80 30 70 Z" fill="#9AD8FF"/>'
+               : mood==='surprised' ? '<path d="M168 22 L172 50" stroke="#C4232C" stroke-width="7" stroke-linecap="round"/><circle cx="173.5" cy="61" r="4" fill="#C4232C"/>'
+               : mood==='wave' && size >= 60 ? '<g stroke="#E57373" stroke-width="3" fill="none" stroke-linecap="round"><path d="M186 58 Q192 66 188 74"/><path d="M194 52 Q202 64 196 76"/></g>'
+               : mood==='point' ? spark(192,78,.7) : '';
+  return `<svg width="${size}" height="${Math.round(size*1.15)}" viewBox="0 0 200 230" aria-hidden="true">
+  <defs>
+    <radialGradient id="${k}b" cx="36%" cy="24%" r="85%"><stop offset="0" stop-color="#FF9A96"/><stop offset=".4" stop-color="#F2464C"/><stop offset=".82" stop-color="#C4232C"/><stop offset="1" stop-color="#9E1820"/></radialGradient>
+    <radialGradient id="${k}l" cx="35%" cy="30%" r="80%"><stop offset="0" stop-color="#FF9A96"/><stop offset=".6" stop-color="#F2464C"/><stop offset="1" stop-color="#9E1820"/></radialGradient>
+    <linearGradient id="${k}v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A0E16"/><stop offset="1" stop-color="#1A0407"/></linearGradient>
+    <linearGradient id="${k}p" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#C4232C"/><stop offset="1" stop-color="#FF9A96"/></linearGradient>
+    <filter id="${k}s" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="3"/></filter>
+    <filter id="${k}h" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter>
+    <filter id="${k}g" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="230"><feGaussianBlur stdDeviation="2.4"/></filter>
+  </defs>
+  <g transform="translate(0 22)">
+    <ellipse cx="100" cy="190" rx="${mood==='wow'?42:58}" ry="${mood==='wow'?5:7}" fill="#000" opacity=".14" filter="url(#${k}s)"/>
+    <g transform="${tf}">
+      ${arms.map(([x,y,r]) => `<ellipse cx="${x}" cy="${y}" rx="12" ry="19" fill="url(#${k}l)" transform="rotate(${r} ${x} ${y})"/>`).join('')}
+      <g transform="rotate(${plumeRot} 104 50) translate(0 22)"><path d="M96 26 C90 8 104 -6 124 -8 C140 -9 150 -2 156 6 C146 4 138 6 132 10 C142 10 152 14 158 22 C146 20 134 20 124 22 C114 24 106 28 104 30 Z" fill="url(#${k}p)"/></g>
+      <path d="M100 44 C152 44 174 78 174 118 C174 158 148 178 100 178 C52 178 26 158 26 118 C26 78 48 44 100 44 Z" fill="url(#${k}b)"/>
+      <ellipse cx="70" cy="70" rx="17" ry="8" fill="#fff" opacity=".45" transform="rotate(-30 70 70)" filter="url(#${k}h)"/>
+      <ellipse cx="76" cy="179" rx="21" ry="11" fill="url(#${k}l)"/><ellipse cx="124" cy="179" rx="21" ry="11" fill="url(#${k}l)"/>
+      <rect x="44" y="88" width="112" height="50" rx="25" fill="#9E1820" opacity=".55"/>
+      <rect x="44" y="86" width="112" height="50" rx="25" fill="url(#${k}v)"/>
+      <path d="M54 92 Q100 86 146 92" stroke="#fff" stroke-width="3" opacity=".16" fill="none" stroke-linecap="round"/>
+      <g opacity=".85" filter="url(#${k}g)">${E('#FF6B6B',3)}${M('#FF6B6B',3)}</g>
+      ${E('#FFE3E3',0)}${M('#FFE3E3',0)}
+    </g>
+    ${extras}
+  </g>
+</svg>`;
+}
+
+/* ---------- feedback sheet + celebration ---------- */
+let sheetTimer;
+function sheet(kind, title, msg, code){
+  const el = document.getElementById('sheet');
+  clearTimeout(sheetTimer);
+  el.className = 'sheet ' + (kind==='ok' ? 'ok' : 'err');
+  el.innerHTML = `<div class="sheet-in">
+    <div class="hstack" style="gap:16px">
+      <div class="ico">${kind==='ok' ? '✔️' : '✖️'}</div>
+      <div><h3>${esc(title)}</h3><div style="font-size:15px">${esc(msg)}</div>${code ? `<span class="mono">${esc(code)}</span>` : ''}</div>
+    </div>
+    <button class="btn ${kind==='ok'?'green':'red'}" data-a="closeSheet">${kind==='ok'?'Continue':'Got it'}</button>
+  </div>`;
+  requestAnimationFrame(() => el.classList.add('show'));
+  if(kind==='ok') sheetTimer = setTimeout(closeSheet, 3200);
+}
+function closeSheet(){ document.getElementById('sheet').classList.remove('show'); }
+function celebrate(title, sub, xp, method){
+  closeSheet();
+  const colors = ['#58CC02','#1CB0F6','#FFC800','#FF4B4B','#CE82FF','#FF9600'];
+  const bits = Array.from({length:60}, () => `<i style="left:${Math.random()*100}%;background:${colors[Math.random()*6|0]};animation-duration:${1.6+Math.random()*1.8}s;animation-delay:${Math.random()*.6}s;transform:rotate(${Math.random()*360}deg)"></i>`).join('');
+  const o = document.createElement('div');
+  o.className = 'overlay';
+  o.innerHTML = `<div class="confetti">${bits}</div><div class="in">
+    <div class="bounce">${mascot(150,'wow')}</div>
+    <h1>${esc(title)}</h1>
+    <p class="muted" style="font-size:17px">${esc(sub)}</p>
+    ${xp ? `<div class="xpbox"><b>XP earned</b><span>⚡ +${xp}</span></div>` : ''}
+    ${method ? `<span class="mono faint">${esc(method)}</span>` : ''}
+    <button class="btn block" style="margin-top:10px;min-width:260px" data-a="closeOverlay">Continue</button>
+  </div>`;
+  document.body.appendChild(o);
+}
+
+/* in-page confirm dialog (browser dialogs are blocked when the page is shared) */
+function ask(title, msg, d, action, label){
+  const attrs = Object.entries(d).filter(([k]) => k !== 'a' && k !== 'ok').map(([k,val]) => `data-${k}="${esc(val)}"`).join(' ');
+  const o = document.createElement('div');
+  o.className = 'overlay'; o.style.background = 'rgba(0,0,0,.45)';
+  o.innerHTML = `<div class="card stack" style="max-width:380px;width:100%;text-align:center;justify-items:center;padding:28px">
+    ${mascot(90,'sad')}<h2>${esc(title)}</h2><p class="muted">${esc(msg)}</p>
+    <button class="btn red block" data-a="${action}" data-ok="1" ${attrs}>${esc(label)}</button>
+    <button class="btn ghost plain block" data-a="closeOverlay">Keep it</button></div>`;
+  document.body.appendChild(o);
+}
+
+/* ---------- routing ---------- */
+const HOME = { Learner:'browse', Tutor:'tdash', Administrator:'admin' };
+function go(view, params={}){ ui.view = view; ui.params = params; render(); window.scrollTo(0,0); }
+function render(){
+  const u = me();
+  const root = document.getElementById('app');
+  if(!u){ root.innerHTML = vAuth(); return; }
+  if(!ui.view) ui.view = HOME[u.role];
+  const V = VIEWS[ui.view] || VIEWS[HOME[u.role]];
+  const rail = u.role !== 'Administrator';
+  root.innerHTML = `<div class="app ${rail?'':'norail'}">${vSide(u)}<main class="main"><div class="main-inner">${rail?mStats(u):''}${V(u)}</div></main>${rail?vRail(u):''}</div>`;
+  if(ui.view==='browse') renderGrid();
+}
+
+/* ---------- sidebar & rail ---------- */
+function vSide(u){
+  const navs = {
+    Learner:[['browse','🏠','Browse'],['myclasses','📚','My Classes'],['sessions','🕘','Sessions'],['profile','👤','Profile']],
+    Tutor:[['tdash','🏫','My Classes'],['requests','📨','Requests'],['thistory','🏆','History'],['profile','👤','Profile']],
+    Administrator:[['admin','👥','Users'],['listings','📋','Listings'],['records','📊','Records']],
+  }[u.role];
+  const pend = u.role==='Tutor' ? S.requests.filter(r => r.tutorId===u.id && r.status==='pending').length : 0;
+  const active = ({classdetail:'browse',tutorprofile:'browse',tclass:'tdash'})[ui.view] || ui.view;
+  return `<aside class="side">
+    <div class="logo">${mascot(36,'wave')}aralinks</div>
+    ${navs.map(([v,ic,l]) => `<button class="nav ${active===v?'on':''}" data-a="nav" data-v="${v}"><span class="ic">${ic}</span><span class="lbl">${l}</span>${v==='requests'&&pend?`<span class="badge">${pend}</span>`:''}</button>`).join('')}
+    <div class="spacer"></div>
+    <button class="nav extra" data-a="reset"><span class="ic">♻️</span><span class="lbl">Reset demo</span></button>
+    <button class="nav" data-a="logout"><span class="ic">🚪</span><span class="lbl">Logout</span></button>
+    <div class="who">${avatar(u,38)}<div style="min-width:0"><div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(u.name)}</div><small>${u.role}</small></div></div>
+  </aside>`;
+}
+function mStats(u){ return `<div class="mstats"><span class="fire">🔥 ${S.streak[u.id]||0}</span><span class="bolt">⚡ ${S.xp[u.id]||0}</span>${u.role==='Tutor'?`<span class="star">★ ${rating(u.id).avg}</span>`:''}</div>`; }
+function vRail(u){
+  const xp = S.xp[u.id]||0, lvl = Math.floor(xp/100)+1, into = xp%100, today = S.today[u.id]||0, goal = 50;
+  const upcoming = S.classes.filter(c => c.status==='open' && (u.role==='Tutor' ? c.tutorId===u.id : c.learners.includes(u.id)));
+  const nx = upcoming[0];
+  const tips = {
+    browse:'Classes with a dashed seat still have room. Tap one to join!',
+    classdetail:'Prefer one-on-one? Request a private session with this tutor instead.',
+    tutorprofile:'Pick a time inside the tutor\'s available hours or I\'ll throw an exception 😅',
+    myclasses:'Your classroom link unlocks once the tutor accepts you.',
+    sessions:'Finished a session? Rate it to earn +15 XP.',
+    tdash:'Classes close enrollment automatically when every seat is filled.',
+    requests:'Accepting a private request creates a one-on-one session.',
+    thistory:'Learners can rate a session after you mark it completed.',
+    profile:'Keep your courses, rate, and availability up to date.',
+    tclass:'Tick attendance, then mark the session completed.',
+  };
+  const r = rating(u.id);
+  return `<aside class="rail">
+    <div class="statrow"><span class="fire">🔥 ${S.streak[u.id]||0}</span><span class="bolt">⚡ ${xp}</span>${u.role==='Tutor'?`<span class="star">★ ${r.avg}</span>`:`<span class="gem">💎 ${Math.floor(xp/4)}</span>`}</div>
+    <div class="card stack" style="gap:10px">
+      <div class="between"><h3>Daily goal</h3><span class="muted" style="font-size:14px">${Math.min(today,goal)}/${goal} XP</span></div>
+      <div class="prog"><i style="width:${pct(today,goal)}%"></i></div>
+      <div class="between"><span class="muted" style="font-size:14px">Level ${lvl}</span><span class="muted" style="font-size:14px">${into}/100 to Level ${lvl+1}</span></div>
+      <div class="prog green" style="height:10px"><i style="width:${into}%"></i></div>
+    </div>
+    ${nx ? `<div class="card stack" style="gap:10px">
+      <div class="panel-title" style="margin:0">Up next</div>
+      <div class="hstack"><div class="ccard-ic" style="background:${course(nx.courseId).color};color:#fff">${course(nx.courseId).icon}</div>
+        <div><h3 style="font-size:15px">${esc(nx.title)}</h3><div class="muted" style="font-size:13px">${sched(nx)}</div></div></div>
+      ${nx.link ? `<a class="btn blue sm block" href="${esc(nx.link)}" target="_blank" rel="noopener">Open ${esc(nx.platform)} ↗</a>` : `<span class="pill">No link yet</span>`}
+    </div>` : ''}
+    ${u.role==='Tutor' ? `<div class="card hstack" style="justify-content:space-between"><div><h3>${r.n} reviews</h3><div class="muted" style="font-size:14px">Average ★ ${r.avg}</div></div><button class="btn ghost sm" data-a="nav" data-v="thistory">View</button></div>` : ''}
+    <div class="tip">${mascot(70,'point')}<div class="bubble">${tips[ui.view]||'Keep learning together!'}</div></div>
+  </aside>`;
+}
+
+/* ---------- AUTH (wireframe 1) ---------- */
+function vAuth(){
+  const login = ui.authTab==='login';
+  const demos = [['🎒','Learner · Cara','25-11111','Learner'],['🎓','Tutor · Ben','23-01234','Tutor'],['🎓','Tutor · Gia','22-04567','Tutor'],['🛡️','Admin','00-00001','Administrator']];
+  return `<div class="auth">
+    <div class="auth-top"><div class="logo" style="padding:0">${mascot(40,'wave')}aralinks</div><span class="pill blue">Demo build</span></div>
+    <div class="auth-main">
+      <div class="auth-hero">
+        <div class="bounce big-m">${mascot(210,'wave')}</div>
+        <h1>Find a peer tutor. Share what you know.</h1>
+        <p>AraLinks connects university students who need help with classmates who can teach it — 1-on-1 or in group classes.</p>
+      </div>
+      <div class="card stack" style="padding:24px">
+        <div class="tabs2">
+          <button class="btn ${login?'':'ghost'}" data-a="authTab" data-t="login">Login</button>
+          <button class="btn ${login?'ghost':''}" data-a="authTab" data-t="register">Register</button>
+        </div>
+        ${login ? `<form class="stack" data-f="login" id="authForm">
+          <label class="f">SR-Code<input class="input" name="srCode" placeholder="00-00000" autocomplete="username" required></label>
+          <label class="f">Password<input class="input" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required></label>
+          <label class="f">Role<select class="input" name="role"><option>Learner</option><option>Tutor</option><option>Administrator</option></select></label>
+          <button class="btn block" type="submit">Log in</button>
+        </form>
+        <div class="stack" style="gap:8px">
+          <span class="muted" style="font-size:13px">Demo accounts (password <b>demo123</b>) — tap to fill:</span>
+          <div class="demo-acc">${demos.map(d=>`<button type="button" data-a="fillDemo" data-sr="${d[2]}" data-role="${d[3]}">${d[0]} ${d[1]}</button>`).join('')}</div>
+        </div>` : `<form class="stack" data-f="register" id="authForm">
+          <label class="f">Full name<input class="input" name="name" placeholder="Juan Dela Cruz" required></label>
+          <div class="row2">
+            <label class="f">SR-Code<input class="input" name="srCode" placeholder="25-00000" required></label>
+            <label class="f">I want to…<select class="input" name="role"><option value="Learner">Learn</option><option value="Tutor">Tutor</option></select></label>
+          </div>
+          <label class="f">University email<input class="input" name="email" type="email" placeholder="you@g.batstate-u.edu.ph" required></label>
+          <label class="f">Password<input class="input" name="password" type="password" placeholder="At least 6 characters" required></label>
+          <div class="row2">
+            <label class="f">Program<input class="input" name="program" placeholder="BS Computer Science"></label>
+            <label class="f">Year level<select class="input" name="yearLevel"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></label>
+          </div>
+          <button class="btn block" type="submit">Create account</button>
+        </form>`}
+        <p class="muted" style="text-align:center;font-size:14px">${login ? `No account? <button class="linkbtn" data-a="authTab" data-t="register">Register</button>` : `Have an account? <button class="linkbtn" data-a="authTab" data-t="login">Log in</button>`}</p>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---------- LEARNER: browse (wireframe 2) ---------- */
+function vBrowse(){
+  const classes = ui.browseMode==='classes';
+  return `<div class="pagehead"><div><h1>${classes?'Browse classes':'Find a tutor'}</h1><p>${classes?'Join a group class with other tutees.':'Search tutors by course, availability, and rate.'}</p></div>
+    <div class="seg"><button class="${classes?'on':''}" data-a="browseMode" data-m="classes">Classes</button><button class="${classes?'':'on'}" data-a="browseMode" data-m="tutors">Tutors</button></div></div>
+  ${classes ? `<form class="hstack wrap" style="margin-bottom:20px" data-f="search">
+      <input class="input" style="flex:2;min-width:200px" id="q" name="q" placeholder="Search classes, subjects, tutors…" value="${esc(ui.q)}">
+      <select class="input" style="flex:1;min-width:150px" name="subj" id="subj"><option value="">Subject: All</option>${S.courses.map(c=>`<option value="${c.id}" ${ui.subj===c.id?'selected':''}>${esc(c.name)}</option>`).join('')}</select>
+      <select class="input" style="flex:1;min-width:120px" name="day" id="day"><option value="">Day: Any</option>${DAYS.map(d=>`<option ${ui.day===d?'selected':''}>${d}</option>`).join('')}</select>
+      <button class="btn" type="submit">Search</button>
+    </form>`
+  : `<form class="hstack wrap" style="margin-bottom:20px" data-f="tsearch">
+      <input class="input" style="flex:2;min-width:200px" id="tq" name="tq" placeholder="Search tutors by name…" value="${esc(ui.tq)}">
+      <select class="input" style="flex:1;min-width:150px" name="tcourse" id="tcourse"><option value="">Course: All</option>${S.courses.map(c=>`<option value="${c.id}" ${ui.tcourse===c.id?'selected':''}>${esc(c.name)}</option>`).join('')}</select>
+      <label class="f" style="flex:1;min-width:170px;font-size:13px">Max rate: <b id="tmaxv" style="color:var(--ink)">₱${ui.tmax}/hr</b><input type="range" id="tmax" name="tmax" min="100" max="500" step="10" value="${ui.tmax}"></label>
+      <button class="btn" type="submit">Search</button>
+    </form>`}
+  <div id="grid" class="grid"></div>`;
+}
+function renderGrid(){
+  const g = document.getElementById('grid'); if(!g) return;
+  if(ui.browseMode==='classes'){
+    const q = ui.q.toLowerCase();
+    const list = S.classes.filter(c => c.kind==='group' && c.status==='open'
+      && (!ui.subj || c.courseId===ui.subj) && (!ui.day || c.days.includes(ui.day))
+      && (!q || [c.title, course(c.courseId).name, course(c.courseId).category, user(c.tutorId).name].join(' ').toLowerCase().includes(q)));
+    g.innerHTML = list.length ? list.map(classCard).join('') : emptyState('No classes match that search.','Try another subject or day.');
+  } else {
+    const q = ui.tq.toLowerCase();
+    const list = S.users.filter(u => u.role==='Tutor' && u.active && u.hourlyRate <= ui.tmax
+      && (!ui.tcourse || u.courses.includes(ui.tcourse)) && (!q || u.name.toLowerCase().includes(q) || u.courses.some(c=>course(c).name.toLowerCase().includes(q))));
+    g.innerHTML = list.length ? list.map(tutorCard).join('') : emptyState('No tutors match.','Raise the max rate or pick another course.');
+  }
+}
+function classCard(c){
+  const co = course(c.courseId), t = user(c.tutorId), n = c.learners.length, full = isFull(c), u = me();
+  const joined = c.learners.includes(u.id), pending = S.requests.some(r => r.classId===c.id && r.learnerId===u.id && r.status==='pending');
+  const b = joined ? `<button class="btn ghost green sm" data-a="openClass" data-id="${c.id}">Joined ✓</button>`
+          : pending ? `<button class="btn ghost sm" data-a="openClass" data-id="${c.id}">Pending</button>`
+          : full ? `<button class="btn sm" disabled>Full</button>`
+          : `<button class="btn sm" data-a="openClass" data-id="${c.id}">Join</button>`;
+  return `<article class="ccard" data-a="openClass" data-id="${c.id}">
+    <div class="ccard-top" style="--c:${co.color}">
+      <div class="ccard-ic">${co.icon}</div>
+      <h3>${esc(c.title)}</h3><p>${esc(co.name)} · ${co.type}</p><p>${esc(t.name)}</p>
+      ${avatar(t,48,'ccard-av')}
+    </div>
+    <div class="ccard-body">
+      <div>📅 ${sched(c)}</div>
+      <div>💰 ₱${c.rate} per tutee · ${esc(c.platform)}</div>
+      <div class="slots"><div class="prog ${full?'':'blue'}"><i style="width:${pct(n,c.max)}%"></i></div><span>${n}/${c.max} slots</span></div>
+    </div>
+    <div class="ccard-foot"><span class="star">★ ${rating(t.id).avg}</span>${b}</div>
+  </article>`;
+}
+function tutorCard(t){
+  const r = rating(t.id);
+  return `<article class="tcard" data-a="openTutor" data-id="${t.id}">
+    <div class="hstack">${avatar(t,56)}<div><h3>${esc(t.name)}</h3><div class="muted" style="font-size:13px">${esc(t.program)} · Year ${t.yearLevel}</div><span class="star" style="font-size:14px">★ ${r.avg}</span> <span class="faint" style="font-size:13px">(${r.n})</span></div></div>
+    <p class="muted" style="font-size:14px">${esc(t.bio)}</p>
+    <div class="chips">${t.courses.map(c=>`<span class="tag">${course(c).icon} ${esc(course(c).name)}</span>`).join('')}</div>
+    <div class="between"><span style="font-size:18px;font-weight:900">₱${t.hourlyRate}<span class="muted" style="font-size:13px">/hr</span></span><span class="muted" style="font-size:13px">${t.availability.map(a=>a.day).join(' ')}</span></div>
+  </article>`;
+}
+const emptyState = (t, s, mood='sad') => `<div class="empty" style="grid-column:1/-1">${mascot(100,mood)}<h3>${t}</h3><p>${s}</p></div>`;
+
+/* ---------- LEARNER: class detail (wireframe 3) ---------- */
+function vClassDetail(u){
+  const c = cls(ui.params.id); if(!c) return emptyState('Class not found','');
+  const co = course(c.courseId), t = user(c.tutorId), n = c.learners.length, full = isFull(c);
+  const joined = c.learners.includes(u.id);
+  const pending = S.requests.find(r => r.classId===c.id && r.learnerId===u.id && r.status==='pending');
+  const seats = Array.from({length:c.max}, (_,i) => c.learners[i] ? avatar(user(c.learners[i]),40) : '<span class="dot"></span>').join('');
+  return `<button class="linkbtn" data-a="nav" data-v="browse" style="margin-bottom:14px">← Back to classes</button>
+  <div class="detail">
+    <div class="hero-c">
+      <div class="ccard-top" style="--c:${co.color}">
+        <div class="ccard-ic">${co.icon}</div>
+        <h3>${esc(c.title)}</h3><p>${esc(co.name)} · ${co.category}</p>
+        <p><button class="linkbtn" style="color:#fff;text-transform:none;letter-spacing:0;font-size:14px;text-decoration:underline" data-a="openTutor" data-id="${t.id}">${esc(t.name)}</button> · ★ ${rating(t.id).avg}</p>
+        ${avatar(t,60,'ccard-av')}
+      </div>
+      <div class="stack" style="padding:22px">
+        <div class="stack" style="gap:6px;color:var(--muted)">
+          <div>📅 ${sched(c)}</div><div>💰 ₱${c.rate} per tutee</div><div>💻 ${esc(c.platform)}</div>
+        </div>
+        <div><div class="between" style="margin-bottom:6px"><span>Slots</span><span>${n}/${c.max}</span></div><div class="prog ${full?'':'blue'}"><i style="width:${pct(n,c.max)}%"></i></div></div>
+        <div><div class="panel-title" style="margin-bottom:8px">Tutees (${n}/${c.max})</div><div class="tutees">${seats}</div></div>
+        ${joined ? (c.link ? `<div class="linkbox"><span>🔗 ${esc(c.platform)} link ready</span><a class="btn sm" href="${esc(c.link)}" target="_blank" rel="noopener">Open link ↗</a></div>` : `<div class="lock">⏳ The tutor hasn't added a classroom link yet.</div>`)
+                 : `<div class="lock">🔒 The classroom link unlocks after the tutor accepts you.</div>`}
+      </div>
+    </div>
+    <div class="card stack">
+      <div class="panel-title" style="margin:0">Join this class</div>
+      ${joined ? `<div class="empty" style="padding:8px">${mascot(90,'love')}<h3>You're in!</h3><p>See you ${c.days.join(' & ')}.</p></div>
+                  <button class="btn ghost red block" data-a="leaveClass" data-id="${c.id}">Leave class</button>`
+       : pending ? `<div class="empty" style="padding:8px">${mascot(90)}<h3>Request sent</h3><p>Waiting for ${esc(first(t.name))} to accept.</p></div>
+                  <button class="btn ghost red block" data-a="cancelRequest" data-id="${pending.id}">Cancel request</button>`
+       : `<p class="muted" style="font-size:14px">Class sessions are shared with other tutees.</p>
+          <label class="f">Message to tutor (optional)<textarea class="input" id="joinMsg" placeholder="What topics do you need help with?"></textarea></label>
+          <button class="btn block" data-a="joinClass" data-id="${c.id}" ${full?'disabled':''}>${full?'Class full':'Join class'}</button>`}
+      <div class="or">OR</div>
+      <p class="muted" style="font-size:14px">Prefer one-on-one?</p>
+      <button class="btn ghost block" data-a="openTutor" data-id="${t.id}">Request private session</button>
+      <button class="btn ghost plain block" data-a="nav" data-v="browse">Back</button>
+    </div>
+  </div>`;
+}
+
+/* ---------- LEARNER: tutor profile + private request ---------- */
+function vTutorProfile(u){
+  const t = user(ui.params.id); if(!t) return emptyState('Tutor not found','');
+  const r = rating(t.id), revs = S.reviews.filter(v => v.tutorId===t.id);
+  const open = S.classes.filter(c => c.tutorId===t.id && c.kind==='group' && c.status==='open');
+  return `<button class="linkbtn" data-a="back" style="margin-bottom:14px">← Back</button>
+  <div class="detail">
+    <div class="stack">
+      <div class="card stack">
+        <div class="hstack" style="gap:16px">${avatar(t,72)}<div><h2>${esc(t.name)}</h2><div class="muted">${esc(t.program)} · Year ${t.yearLevel}</div><span class="star">★ ${r.avg}</span> <span class="faint">(${r.n} reviews)</span></div></div>
+        <p>${esc(t.bio)}</p>
+        <div class="chips">${t.courses.map(c=>`<span class="tag">${course(c).icon} ${esc(course(c).name)}</span>`).join('')}</div>
+        <div class="hstack wrap"><span class="pill blue">₱${t.hourlyRate}/hr</span><span class="pill">${esc(t.mode)}</span></div>
+        <div><div class="panel-title" style="margin-bottom:6px">Available</div>
+          ${t.availability.map(a=>`<div class="between" style="padding:4px 0;font-size:14px"><span>${a.day}</span><span class="muted">${t12(a.start)} – ${t12(a.end)}</span></div>`).join('')}</div>
+      </div>
+      ${open.length ? `<div class="card"><div class="panel-title">Group classes</div><div class="stack" style="gap:8px">${open.map(c=>`<div class="between"><div><b>${esc(c.title)}</b><div class="muted" style="font-size:13px">${sched(c)} · ${c.learners.length}/${c.max}</div></div><button class="btn ghost sm" data-a="openClass" data-id="${c.id}">View</button></div>`).join('')}</div></div>` : ''}
+      <div class="card"><div class="panel-title">Reviews</div>${revs.length ? `<div class="stack" style="gap:12px">${revs.map(v=>`<div class="hstack" style="align-items:flex-start">${avatar(user(v.learnerId),34)}<div><div><b>${esc(user(v.learnerId).name)}</b> <span class="star">${'★'.repeat(v.rating)}</span><span class="faint">${'★'.repeat(5-v.rating)}</span></div><div class="muted" style="font-size:14px">${esc(v.comment)}</div></div></div>`).join('')}</div>` : '<p class="muted">No reviews yet.</p>'}</div>
+    </div>
+    <form class="card stack" data-f="private" data-tid="${t.id}">
+      <div class="panel-title" style="margin:0">Request private session</div>
+      <label class="f">Course<select class="input" name="courseId">${t.courses.map(c=>`<option value="${c}">${esc(course(c).name)}</option>`).join('')}</select></label>
+      <label class="f">Day<select class="input" name="day">${DAYS.map(d=>`<option>${d}</option>`).join('')}</select></label>
+      <div class="row2"><label class="f">Start<input class="input" type="time" name="start" value="10:00" data-cost></label><label class="f">End<input class="input" type="time" name="end" value="11:00" data-cost></label></div>
+      <label class="f">Message<textarea class="input" name="message" placeholder="What do you need help with?"></textarea></label>
+      <div class="between"><span class="muted">Estimated cost</span><b id="cost" style="font-size:20px">₱${t.hourlyRate}</b></div>
+      <button class="btn block" type="submit">Send request</button>
+      <p class="faint" style="font-size:12px;text-align:center">Payments are simulated — no real money moves in this prototype.</p>
+    </form>
+  </div>`;
+}
+
+/* ---------- LEARNER: my classes ---------- */
+function vMyClasses(u){
+  const mine = S.classes.filter(c => c.learners.includes(u.id) && c.status==='open');
+  const reqs = S.requests.filter(r => r.learnerId===u.id).sort((a,b)=>b.at-a.at);
+  return `<div class="pagehead"><div><h1>My classes</h1><p>Your upcoming classes and the requests you've sent.</p></div><button class="btn" data-a="nav" data-v="browse">+ Find a class</button></div>
+  <div class="stack">
+    ${mine.length ? mine.map(c => { const co=course(c.courseId), t=user(c.tutorId); return `<div class="card between wrap">
+      <div class="hstack"><div class="ccard-ic" style="background:${co.color};color:#fff;width:48px;height:48px;font-size:24px">${co.icon}</div>
+      <div><h3>${esc(c.title)} ${c.kind==='private'?'<span class="pill">1-on-1</span>':''}</h3><div class="muted" style="font-size:14px">${esc(t.name)} · ${sched(c)}</div><div class="faint" style="font-size:13px">${c.learners.length}/${c.max} tutees · ${esc(c.platform)}</div></div></div>
+      <div class="hstack">${c.link?`<a class="btn blue sm" href="${esc(c.link)}" target="_blank" rel="noopener">Open link ↗</a>`:'<span class="pill">Link pending</span>'}${c.kind==='group'?`<button class="btn ghost sm" data-a="openClass" data-id="${c.id}">Details</button>`:''}</div>
+    </div>`;}).join('') : `<div class="card">${emptyState('No classes yet','Browse classes and join one to get started.','sleepy')}</div>`}
+    <div class="card"><div class="panel-title">My requests</div>
+    ${reqs.length ? `<div class="tscroll"><table class="t"><tr><th>Request</th><th>Tutor</th><th>Status</th><th></th></tr>
+      ${reqs.map(r=>`<tr><td><b>${r.type==='join'?esc(cls(r.classId)?.title||'Class'):'Private · '+esc(course(r.courseId).name)}</b><div class="faint" style="font-size:12px">${r.type==='join'?'Join class':`${r.day} ${t12(r.start)}–${t12(r.end)}`} · ${ago(r.at)}</div></td><td>${esc(user(r.tutorId).name)}</td><td>${reqPill(r)}</td><td style="text-align:right">${r.status==='pending'?`<button class="btn ghost red sm" data-a="cancelRequest" data-id="${r.id}">Cancel</button>`:''}</td></tr>`).join('')}
+    </table></div>` : '<p class="muted">No requests yet.</p>'}</div>
+  </div>`;
+}
+
+/* ---------- LEARNER: session history + rate (wireframe 5) ---------- */
+function vSessions(u){
+  const list = S.classes.filter(c => c.learners.includes(u.id) && c.status!=='removed').sort((a,b) => (a.status==='completed')-(b.status==='completed'));
+  const target = ui.rateTarget && cls(ui.rateTarget);
+  const row = c => {
+    const rev = S.reviews.find(v => v.classId===c.id && v.learnerId===u.id);
+    const act = c.status==='completed' ? (rev ? `<span class="star">★ ${rev.rating}</span>` : c.attendance[u.id] ? `<button class="btn ghost sm" data-a="pickRate" data-id="${c.id}">Rate</button>` : '<span class="faint" style="font-size:12px">Absent</span>')
+              : c.status==='open' ? `<button class="btn ghost red sm" data-a="leaveClass" data-id="${c.id}">Leave</button>` : '';
+    return `<tr><td><b>${esc(c.title)}</b><div class="muted" style="font-size:13px">${esc(user(c.tutorId).name)}</div></td><td>${c.learners.length}</td><td>${statusPill(c)}</td><td style="text-align:right">${act}</td></tr>`;
+  };
+  return `<div class="pagehead"><div><h1>Sessions</h1><p>Your session history. Rate completed sessions to help other learners.</p></div></div>
+  <div class="detail" style="grid-template-columns:1.4fr 1fr">
+    <div class="card"><div class="panel-title">Session history</div>
+      ${list.length ? `<div class="tscroll"><table class="t"><tr><th>Class / Tutor</th><th>Tutees</th><th>Status</th><th></th></tr>${list.map(row).join('')}</table></div>` : emptyState('No sessions yet','Join a class first.','sleepy')}
+    </div>
+    <div class="card stack">
+      <div class="panel-title" style="margin:0">Rate session</div>
+      ${target ? `<form class="stack" data-f="review" data-id="${target.id}">
+          <div><b>${esc(target.title)}</b><div class="muted" style="font-size:14px">with ${esc(user(target.tutorId).name)}</div></div>
+          <div class="stars" id="stars">${[1,2,3,4,5].map(n=>`<button type="button" data-a="star" data-n="${n}" aria-label="${n} stars">★</button>`).join('')}</div>
+          <input type="hidden" name="rating" id="ratingVal" value="0">
+          <label class="f">Comment<textarea class="input" name="comment" placeholder="How was the session?"></textarea></label>
+          <button class="btn block" type="submit">Submit review</button>
+          <button class="btn ghost plain block" type="button" data-a="pickRate" data-id="">Cancel</button>
+        </form>`
+      : `<div class="empty">${mascot(100,'point')}<p>Tap <b>Rate</b> on a completed session to leave feedback.</p></div>`}
+    </div>
+  </div>`;
+}
+
+/* ---------- PROFILE (learner + tutor) ---------- */
+function vProfile(u){
+  const isT = u.role==='Tutor';
+  const done = S.classes.filter(c => c.status==='completed' && (isT ? c.tutorId===u.id : c.learners.includes(u.id))).length;
+  return `<div class="pagehead"><div><h1>Profile</h1><p>${isT?'Your tutor listing — this is what learners see.':'Your learner profile.'}</p></div></div>
+  <div class="stack">
+    <div class="card hstack wrap" style="gap:18px">${avatar(u,84)}
+      <div style="flex:1;min-width:200px"><h2>${esc(u.name)}</h2><div class="muted">${esc(u.srCode)} · ${esc(u.email)}</div><div class="muted">${esc(u.university)}</div></div>
+      <div class="hstack wrap" style="gap:10px">
+        <div class="card" style="padding:10px 14px"><div class="fire" style="font-size:20px;font-weight:900">🔥 ${S.streak[u.id]||0}</div><div class="faint" style="font-size:12px">Day streak</div></div>
+        <div class="card" style="padding:10px 14px"><div class="bolt" style="font-size:20px;font-weight:900">⚡ ${S.xp[u.id]||0}</div><div class="faint" style="font-size:12px">Total XP</div></div>
+        <div class="card" style="padding:10px 14px"><div style="font-size:20px;font-weight:900;color:var(--green)">✔ ${done}</div><div class="faint" style="font-size:12px">Sessions</div></div>
+      </div>
+    </div>
+    <div class="detail" style="grid-template-columns:1fr 1fr">
+      <form class="card stack" data-f="profile">
+        <div class="panel-title" style="margin:0">Details</div>
+        <label class="f">Full name<input class="input" name="name" value="${esc(u.name)}"></label>
+        <div class="row2"><label class="f">Program<input class="input" name="program" value="${esc(u.program||'')}"></label>
+        <label class="f">Year level<select class="input" name="yearLevel">${[1,2,3,4,5].map(y=>`<option ${+u.yearLevel===y?'selected':''}>${y}</option>`).join('')}</select></label></div>
+        ${isT ? `<label class="f">Bio<textarea class="input" name="bio">${esc(u.bio)}</textarea></label>
+        <div class="row2"><label class="f">Hourly rate (₱)<input class="input" name="hourlyRate" type="number" value="${u.hourlyRate}"></label>
+        <label class="f">Mode<select class="input" name="mode">${['Online','Face-to-face','Online / Face-to-face'].map(m=>`<option ${u.mode===m?'selected':''}>${m}</option>`).join('')}</select></label></div>` : ''}
+        <button class="btn block" type="submit">Save changes</button>
+      </form>
+      ${isT ? `<div class="stack">
+        <div class="card stack"><div class="panel-title" style="margin:0">Courses I teach</div>
+          <div class="chips">${u.courses.map(c=>`<span class="tag">${course(c).icon} ${esc(course(c).name)} <button class="linkbtn" style="color:var(--red)" data-a="removeCourse" data-id="${c}" aria-label="Remove">✕</button></span>`).join('') || '<span class="muted">None yet</span>'}</div>
+          <div class="hstack"><select class="input" id="addCourseSel">${S.courses.filter(c=>!u.courses.includes(c.id)).map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select><button class="btn blue sm" data-a="addCourse">Add</button></div>
+        </div>
+        <div class="card stack"><div class="panel-title" style="margin:0">Availability</div>
+          ${u.availability.map((a,i)=>`<div class="between" style="font-size:14px"><span><b>${a.day}</b> <span class="muted">${t12(a.start)} – ${t12(a.end)}</span></span><button class="linkbtn" style="color:var(--red)" data-a="removeAvail" data-i="${i}">Remove</button></div>`).join('') || '<span class="muted">No hours set</span>'}
+          <form class="hstack wrap" data-f="avail"><select class="input" name="day" style="flex:1;min-width:80px">${DAYS.map(d=>`<option>${d}</option>`).join('')}</select><input class="input" type="time" name="start" value="09:00" style="flex:1;min-width:110px"><input class="input" type="time" name="end" value="12:00" style="flex:1;min-width:110px"><button class="btn blue sm" type="submit">Add</button></form>
+        </div></div>`
+      : `<div class="card stack"><div class="panel-title" style="margin:0">Want to teach too?</div>${mascot(90,'fired')}<p class="muted">In the full system a learner can also register as a tutor and list courses, rates and availability. Log in as a tutor to see that side.</p><button class="btn ghost block" data-a="fillLogout" data-sr="23-01234" data-role="Tutor">Switch to tutor demo</button></div>`}
+    </div>
+  </div>`;
+}
+
+/* ---------- TUTOR: dashboard (wireframe 4) ---------- */
+function vTutorDash(u){
+  const mine = S.classes.filter(c => c.tutorId===u.id && c.status!=='removed').sort((a,b)=>(a.status!=='open')-(b.status!=='open'));
+  const joins = S.requests.filter(r => r.tutorId===u.id && r.type==='join' && r.status==='pending');
+  const priv = S.requests.filter(r => r.tutorId===u.id && r.type==='private' && r.status==='pending').length;
+  return `<div class="pagehead"><div><h1>Hi, ${esc(first(u.name))}! 👋</h1><p>Create classes, manage tutees and respond to join requests.</p></div>
+    ${priv?`<button class="btn yellow" data-a="nav" data-v="requests">📨 ${priv} private request${priv>1?'s':''}</button>`:''}</div>
+  <div class="detail" style="grid-template-columns:minmax(0,.9fr) minmax(0,1.3fr)">
+    <form class="card stack" data-f="createClass">
+      <div class="panel-title" style="margin:0">Create a class</div>
+      <label class="f">Class title<input class="input" name="title" placeholder="e.g. Java Basics"></label>
+      <label class="f">Subject<select class="input" name="courseId"><option value="">Select subject</option>${u.courses.map(c=>`<option value="${c}">${esc(course(c).name)}</option>`).join('')}</select></label>
+      <div class="f"><span style="font-size:14px;color:var(--muted)">Schedule</span><div class="chips">${DAYS.map(d=>`<label class="chip"><input type="checkbox" name="days" value="${d}"><span>${d}</span></label>`).join('')}</div></div>
+      <div class="row2"><label class="f">Start<input class="input" type="time" name="start" value="15:00"></label><label class="f">End<input class="input" type="time" name="end" value="17:00"></label></div>
+      <div class="row2"><label class="f">Max tutees<input class="input" type="number" name="max" value="5"></label><label class="f">Rate / tutee (₱)<input class="input" type="number" name="rate" placeholder="PHP"></label></div>
+      <label class="f">Platform<select class="input" name="platform">${PLATFORMS.map(p=>`<option>${p}</option>`).join('')}</select></label>
+      <label class="f">Classroom link<input class="input" name="link" placeholder="https://meet.google.com/…"></label>
+      <button class="btn block" type="submit">Create class</button>
+    </form>
+    <div class="stack">
+      <div class="card"><div class="panel-title">My classes <span class="pill">${mine.filter(c=>c.status==='open').length} active</span></div>
+        ${mine.length ? `<div class="tscroll"><table class="t"><tr><th>Class</th><th>Schedule</th><th>Tutees</th><th></th></tr>
+        ${mine.map(c=>`<tr><td><b>${esc(c.title)}</b><div>${statusPill(c)}</div></td><td class="muted" style="font-size:13px">${c.days.join(', ')}<br>${t12(c.start)}</td><td><b>${c.learners.length}/${c.max}</b></td><td style="text-align:right"><button class="btn ghost sm" data-a="manage" data-id="${c.id}">Manage</button></td></tr>`).join('')}
+        </table></div>` : emptyState('No classes yet','Create your first class on the left.','point')}
+      </div>
+      <div class="card"><div class="panel-title">Join requests ${joins.length?`<span class="pill yellow">${joins.length} new</span>`:''}</div>
+        ${joins.length ? `<div class="tscroll"><table class="t"><tr><th>Learner</th><th>Class</th><th>Action</th></tr>
+        ${joins.map(r=>{const c=cls(r.classId), l=user(r.learnerId); return `<tr><td><div class="hstack">${avatar(l,32)}<div><b>${esc(l.name)}</b>${r.message?`<div class="muted" style="font-size:12px">“${esc(r.message)}”</div>`:''}</div></div></td><td style="font-size:14px">${esc(c.title)}<div class="faint" style="font-size:12px">${c.learners.length}/${c.max} filled</div></td>
+          <td><div class="hstack"><button class="btn sm" data-a="accept" data-id="${r.id}">Accept</button><button class="btn ghost red sm" data-a="decline" data-id="${r.id}">Decline</button></div></td></tr>`;}).join('')}
+        </table></div>` : `<p class="muted">No pending join requests. 🎉</p>`}
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ---------- TUTOR: manage one class ---------- */
+function vTutorClass(u){
+  const c = cls(ui.params.id); if(!c) return emptyState('Class not found','');
+  const co = course(c.courseId), open = c.status==='open';
+  return `<button class="linkbtn" data-a="nav" data-v="tdash" style="margin-bottom:14px">← My classes</button>
+  <div class="pagehead"><div><h1>${esc(c.title)}</h1><p>${co.icon} ${esc(co.name)} · ${sched(c)} · ₱${c.rate}/tutee</p></div>${statusPill(c)}</div>
+  <div class="detail">
+    <div class="card stack">
+      <div class="panel-title" style="margin:0">Participants & attendance <span class="pill">${c.learners.length}/${c.max}</span></div>
+      ${c.learners.length ? c.learners.map(id=>{const l=user(id); return `<div class="between"><div class="hstack">${avatar(l,38)}<div><b>${esc(l.name)}</b><div class="faint" style="font-size:12px">${esc(l.program||'')}</div></div></div>
+        <div class="hstack">${open?`<label class="chip"><input type="checkbox" class="att" value="${id}" checked><span>Present</span></label><button class="linkbtn" style="color:var(--red)" data-a="removeLearner" data-id="${c.id}" data-l="${id}">Remove</button>`
+          : (c.status==='completed' ? (c.attendance[id]?'<span class="pill green">Present</span>':'<span class="pill red">Absent</span>') : '')}</div></div>`;}).join('')
+        : `<p class="muted">No tutees yet.</p>`}
+      ${open && isFull(c) && c.kind==='group' ? `<div class="lock">🔒 Class full — enrollment closed.</div>` : ''}
+      ${open ? `<div class="hstack wrap" style="margin-top:6px"><button class="btn" data-a="complete" data-id="${c.id}" ${c.learners.length?'':'disabled'}>Mark session completed</button><button class="btn ghost red" data-a="cancelClass" data-id="${c.id}">Cancel class</button></div>` : ''}
+      ${c.status==='completed' ? (()=>{const rv=S.reviews.filter(v=>v.classId===c.id); return `<div class="panel-title" style="margin:8px 0 0">Feedback (${rv.length})</div>${rv.map(v=>`<div><span class="star">${'★'.repeat(v.rating)}</span> <b>${esc(user(v.learnerId).name)}</b><div class="muted" style="font-size:14px">${esc(v.comment)}</div></div>`).join('')||'<p class="muted">No reviews yet.</p>'}`;})() : ''}
+    </div>
+    <form class="card stack" data-f="link" data-id="${c.id}">
+      <div class="panel-title" style="margin:0">Classroom info</div>
+      <p class="muted" style="font-size:14px">AraLinks stores the link — the call itself happens on the external platform.</p>
+      <label class="f">Platform<select class="input" name="platform" ${open?'':'disabled'}>${PLATFORMS.map(p=>`<option ${c.platform===p?'selected':''}>${p}</option>`).join('')}</select></label>
+      <label class="f">Classroom link<input class="input" name="link" value="${esc(c.link)}" placeholder="https://…" ${open?'':'disabled'}></label>
+      ${open?'<button class="btn blue block" type="submit">Save link</button>':''}
+      ${c.link?`<a class="btn ghost block" href="${esc(c.link)}" target="_blank" rel="noopener">Test link ↗</a>`:''}
+    </form>
+  </div>`;
+}
+
+/* ---------- TUTOR: requests ---------- */
+function vRequests(u){
+  const all = S.requests.filter(r => r.tutorId===u.id).sort((a,b)=>(a.status!=='pending')-(b.status!=='pending') || b.at-a.at);
+  return `<div class="pagehead"><div><h1>Requests</h1><p>Private session requests and class join requests from learners.</p></div></div>
+  <div class="stack">${all.length ? all.map(r=>{const l=user(r.learnerId), c=r.classId&&cls(r.classId);
+    const hrs = r.type==='private' ? (mins(r.end)-mins(r.start))/60 : 0;
+    return `<div class="card between wrap"><div class="hstack" style="align-items:flex-start">${avatar(l,46)}
+      <div><div class="hstack wrap" style="gap:8px"><b>${esc(l.name)}</b>${r.type==='private'?'<span class="pill blue">Private</span>':'<span class="pill">Join class</span>'}${reqPill(r)}</div>
+      <div class="muted" style="font-size:14px">${r.type==='private' ? `${course(r.courseId).icon} ${esc(course(r.courseId).name)} · ${r.day} ${t12(r.start)}–${t12(r.end)} · ₱${Math.round(u.hourlyRate*hrs)}` : `${esc(c.title)} · ${c.learners.length}/${c.max} filled`}</div>
+      ${r.message?`<div style="font-size:14px;margin-top:4px">“${esc(r.message)}”</div>`:''}<div class="faint" style="font-size:12px">${ago(r.at)}</div></div></div>
+      ${r.status==='pending'?`<div class="hstack"><button class="btn" data-a="accept" data-id="${r.id}">Accept</button><button class="btn ghost red" data-a="decline" data-id="${r.id}">Decline</button></div>`:''}
+    </div>`;}).join('') : `<div class="card">${emptyState('No requests yet','When learners request you, they show up here.','point')}</div>`}</div>`;
+}
+
+/* ---------- TUTOR: history ---------- */
+function vTutorHistory(u){
+  const done = S.classes.filter(c => c.tutorId===u.id && c.status==='completed');
+  const revs = S.reviews.filter(v => v.tutorId===u.id).sort((a,b)=>b.at-a.at);
+  const r = rating(u.id);
+  const dist = [5,4,3,2,1].map(n => [n, revs.filter(v=>v.rating===n).length]);
+  return `<div class="pagehead"><div><h1>History</h1><p>Completed sessions and the feedback you've received.</p></div></div>
+  <div class="detail" style="grid-template-columns:1.3fr 1fr">
+    <div class="card"><div class="panel-title">Completed sessions</div>
+      ${done.length ? `<div class="tscroll"><table class="t"><tr><th>Class</th><th>Attended</th><th>Earned*</th><th>Rating</th></tr>
+      ${done.map(c=>{const att=c.learners.filter(l=>c.attendance[l]).length; const rv=S.reviews.filter(v=>v.classId===c.id); const avg=rv.length?(rv.reduce((a,v)=>a+v.rating,0)/rv.length).toFixed(1):'–';
+        return `<tr><td><b>${esc(c.title)}</b><div class="faint" style="font-size:12px">${sched(c)}</div></td><td>${att}/${c.learners.length}</td><td>₱${att*c.rate}</td><td class="star">★ ${avg}</td></tr>`;}).join('')}</table></div>
+      <p class="faint" style="font-size:12px;margin-top:8px">*Simulated — AraLinks doesn't process real payments.</p>` : emptyState('Nothing completed yet','Mark a class completed from My Classes.','point')}
+    </div>
+    <div class="card stack"><div class="panel-title" style="margin:0">Your rating</div>
+      <div class="hstack"><span style="font-size:44px;font-weight:900" class="star">★ ${r.avg}</span><span class="muted">${r.n} reviews</span></div>
+      ${dist.map(([n,k])=>`<div class="hstack" style="font-size:13px"><span style="width:16px">${n}</span><div class="prog" style="flex:1;height:10px"><i style="width:${revs.length?pct(k,revs.length):0}%"></i></div><span class="faint" style="width:16px">${k}</span></div>`).join('')}
+      ${revs.map(v=>`<div class="hstack" style="align-items:flex-start">${avatar(user(v.learnerId),32)}<div><b>${esc(user(v.learnerId).name)}</b> <span class="star">${'★'.repeat(v.rating)}</span><div class="muted" style="font-size:14px">${esc(v.comment)}</div></div></div>`).join('')}
+    </div>
+  </div>`;
+}
+
+/* ---------- ADMIN ---------- */
+function vAdmin(u){
+  return `<div class="pagehead"><div><h1>Users</h1><p>Manage accounts. Deactivated users can't log in.</p></div></div>
+  <div class="card"><div class="tscroll"><table class="t"><tr><th>User</th><th>SR-Code</th><th>Role</th><th>Status</th><th></th></tr>
+  ${S.users.map(x=>`<tr><td><div class="hstack">${avatar(x,34)}<div><b>${esc(x.name)}</b><div class="faint" style="font-size:12px">${esc(x.email)}</div></div></div></td><td class="mono">${esc(x.srCode)}</td>
+    <td><span class="pill ${x.role==='Tutor'?'blue':x.role==='Learner'?'green':''}">${x.role}</span></td><td>${x.active?'<span class="pill green">Active</span>':'<span class="pill red">Disabled</span>'}</td>
+    <td style="text-align:right">${x.id===u.id?'':`<button class="btn ghost ${x.active?'red':'green'} sm" data-a="toggleUser" data-id="${x.id}">${x.active?'Deactivate':'Activate'}</button>`}</td></tr>`).join('')}
+  </table></div></div>`;
+}
+function vListings(){
+  const list = S.classes.filter(c => c.status!=='removed');
+  return `<div class="pagehead"><div><h1>Listings</h1><p>Monitor tutoring classes and remove inappropriate listings.</p></div></div>
+  <div class="card"><div class="tscroll"><table class="t"><tr><th>Class</th><th>Tutor</th><th>Tutees</th><th>Status</th><th></th></tr>
+  ${list.map(c=>`<tr><td><b>${course(c.courseId).icon} ${esc(c.title)}</b><div class="faint" style="font-size:12px">${sched(c)} · ₱${c.rate}</div></td><td>${esc(user(c.tutorId).name)}</td><td>${c.learners.length}/${c.max}</td><td>${statusPill(c)}</td>
+    <td style="text-align:right"><button class="btn ghost red sm" data-a="removeListing" data-id="${c.id}">Remove</button></td></tr>`).join('')}
+  </table></div></div>`;
+}
+function vRecords(){
+  const n = f => S.users.filter(f).length;
+  const tiles = [['👥','Users',S.users.length,'var(--blue)'],['🎓','Tutors',n(u=>u.role==='Tutor'),'var(--purple)'],['🎒','Learners',n(u=>u.role==='Learner'),'var(--green)'],
+    ['🏫','Open classes',S.classes.filter(c=>c.status==='open').length,'var(--orange)'],['✅','Completed',S.classes.filter(c=>c.status==='completed').length,'var(--green-d)'],
+    ['📨','Pending requests',S.requests.filter(r=>r.status==='pending').length,'var(--yellow-d)'],['⭐','Reviews',S.reviews.length,'var(--yellow-d)'],
+    ['📊','Avg rating',S.reviews.length?(S.reviews.reduce((a,v)=>a+v.rating,0)/S.reviews.length).toFixed(1):'–','var(--red)']];
+  return `<div class="pagehead"><div><h1>Records</h1><p>System-wide numbers and recent activity.</p></div></div>
+  <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(170px,1fr));margin-bottom:20px">${tiles.map(([i,l,v,c])=>`<div class="card"><div style="font-size:26px">${i}</div><div style="font-size:30px;font-weight:900;color:${c}">${v}</div><div class="muted" style="font-size:13px;text-transform:uppercase;letter-spacing:.05em">${l}</div></div>`).join('')}</div>
+  <div class="card"><div class="panel-title">Recent activity (this demo)</div>${S.log.length?S.log.map(e=>`<div class="between" style="padding:6px 0;border-bottom:2px solid var(--line);font-size:14px"><span>${esc(e.text)}</span><span class="faint">${ago(e.at)}</span></div>`).join(''):'<p class="muted">Nothing yet — actions you take as learners and tutors show up here.</p>'}</div>`;
+}
+
+const VIEWS = { browse:vBrowse, classdetail:vClassDetail, tutorprofile:vTutorProfile, myclasses:vMyClasses, sessions:vSessions, profile:vProfile,
+  tdash:vTutorDash, tclass:vTutorClass, requests:vRequests, thistory:vTutorHistory, admin:vAdmin, listings:vListings, records:vRecords };
+
+/* =========================================================
+   ACTIONS — names follow the proposal's class methods
+   ========================================================= */
+let prev = null;
+const A = {
+  nav:d => { ui.rateTarget = null; go(d.v); },
+  back:() => prev ? go(prev.view, prev.params) : go('browse'),
+  closeSheet, closeOverlay:() => { document.querySelector('.overlay')?.remove(); },
+  authTab:d => { ui.authTab = d.t; render(); },
+  fillDemo:d => { const f = document.getElementById('authForm'); f.srCode.value = d.sr; f.password.value = 'demo123'; f.role.value = d.role; },
+  fillLogout:d => { S.me = null; save(); ui.authTab='login'; ui.view=null; render(); A.fillDemo(d); },
+  logout:() => { S.me = null; ui.view = null; save(); render(); },
+  reset:d => { if(!d.ok) return ask('Reset all demo data?', 'Everything goes back to the starting classes, requests and reviews.', d, 'reset', 'Reset'); const m = S.me; S = seed(); S.me = m; save(); ui.view = null; render(); sheet('ok','Demo reset','All data is back to the starting state.'); },
+  browseMode:d => { ui.browseMode = d.m; render(); },
+  openClass:d => { prev = {view:ui.view, params:ui.params}; go('classdetail', {id:d.id}); },
+  openTutor:d => { prev = {view:ui.view, params:ui.params}; go('tutorprofile', {id:d.id}); },
+  manage:d => go('tclass', {id:d.id}),
+
+  // Learner.submitRequest() for a group class
+  joinClass:d => {
+    const u = me(), c = cls(d.id), msg = (document.getElementById('joinMsg')?.value || '').trim();
+    if(c.status !== 'open') fail('ClassClosedException', 'This class is no longer open.');
+    if(c.learners.includes(u.id)) fail('AlreadyEnrolledException', 'You are already in this class.');
+    if(S.requests.some(r => r.classId===c.id && r.learnerId===u.id && r.status==='pending')) fail('DuplicateRequestException', 'You already asked to join this class.');
+    if(isFull(c)) fail('ClassFullException', `No slots left (${c.learners.length}/${c.max}). Choose another class.`);
+    S.requests.push({id:uid('r'), type:'join', learnerId:u.id, tutorId:c.tutorId, classId:c.id, courseId:c.courseId, message:msg, status:'pending', at:Date.now()});
+    gainXP(u.id, 10); logEvent(`${u.name} asked to join “${c.title}”`); save(); render();
+    celebrate('Request sent!', `${first(user(c.tutorId).name)} will review your request to join ${c.title}.`, 10, 'learner.submitRequest(tutoringClass)');
+  },
+  // TutoringClass.removeLearner()
+  leaveClass:d => {
+    const u = me(), c = cls(d.id);
+    if(!d.ok) return ask(`Leave “${c.title}”?`, 'Your seat opens up for other learners.', d, 'leaveClass', 'Leave');
+    c.learners = c.learners.filter(x => x !== u.id);
+    logEvent(`${u.name} left “${c.title}”`); save(); render();
+    sheet('ok', 'You left the class', `Your seat in ${c.title} is open again.`, 'tutoringClass.removeLearner(learner)');
+  },
+  // Learner.cancelRequest()
+  cancelRequest:d => {
+    const r = S.requests.find(x => x.id===d.id);
+    if(!r || r.status!=='pending') fail('InvalidRequestStateException', 'Only pending requests can be cancelled.');
+    r.status = 'cancelled'; save(); render();
+    sheet('ok', 'Request cancelled', 'The tutor will no longer see it.', 'learner.cancelRequest(request)');
+  },
+  pickRate:d => { ui.rateTarget = d.id || null; render(); },
+  star:d => {
+    document.getElementById('ratingVal').value = d.n;
+    document.querySelectorAll('#stars button').forEach((b,i) => b.classList.toggle('on', i < +d.n));
+  },
+
+  // Tutor.acceptRequest()
+  accept:d => {
+    const u = me(), r = S.requests.find(x => x.id===d.id), l = user(r.learnerId);
+    if(r.status !== 'pending') fail('InvalidRequestStateException', 'This request was already handled.');
+    if(r.type === 'join'){
+      const c = cls(r.classId);
+      if(isFull(c)) fail('ClassFullException', `“${c.title}” is full (${c.learners.length}/${c.max}). Enrollment is closed.`);
+      c.learners.push(l.id); r.status = 'accepted';
+      logEvent(`${u.name} accepted ${l.name} into “${c.title}”`); save(); render();
+      sheet('ok', isFull(c) ? 'Accepted — class is now full!' : `${first(l.name)} joined!`, isFull(c) ? 'Enrollment closed automatically.' : `${c.learners.length}/${c.max} seats filled.`, 'tutor.acceptRequest(request) → tutoringClass.addLearner(learner)');
+    } else {
+      const k = {id:uid('k'), kind:'private', title:`Private · ${course(r.courseId).name}`, courseId:r.courseId, tutorId:u.id, days:[r.day], start:r.start, end:r.end, max:1,
+        rate:Math.round(u.hourlyRate*(mins(r.end)-mins(r.start))/60), platform:'Google Meet', link:'', learners:[l.id], status:'open', attendance:{}};
+      S.classes.push(k); r.status = 'accepted'; gainXP(u.id, 10);
+      logEvent(`${u.name} accepted a private session with ${l.name}`); save(); go('tclass', {id:k.id});
+      sheet('ok', 'Session scheduled!', `Add a classroom link so ${first(l.name)} can join.`, 'tutor.acceptRequest(request) → new TutoringSession().schedule()');
+    }
+  },
+  // Tutor.declineRequest()
+  decline:d => {
+    const u = me(), r = S.requests.find(x => x.id===d.id);
+    r.status = 'declined'; logEvent(`${u.name} declined a request from ${user(r.learnerId).name}`); save(); render();
+    sheet('ok', 'Request declined', `${user(r.learnerId).name} will see it as declined.`, 'tutor.declineRequest(request)');
+  },
+  removeLearner:d => {
+    const c = cls(d.id); if(!d.ok) return ask(`Remove ${user(d.l).name}?`, 'They will be taken out of this class.', d, 'removeLearner', 'Remove');
+    c.learners = c.learners.filter(x => x !== d.l); save(); render();
+    sheet('ok', 'Learner removed', 'A slot opened up.', 'tutoringClass.removeLearner(learner)');
+  },
+  // TutoringSession.markCompleted() / Tutor.completeSession()
+  complete:d => {
+    const u = me(), c = cls(d.id);
+    document.querySelectorAll('.att').forEach(b => c.attendance[b.value] = b.checked);
+    c.learners.forEach(id => { if(!(id in c.attendance)) c.attendance[id] = false; });
+    c.status = 'completed';
+    S.requests.filter(r => r.classId===c.id && r.status==='pending').forEach(r => r.status='declined');
+    gainXP(u.id, 25); logEvent(`${u.name} completed “${c.title}”`); save(); render();
+    celebrate('Session complete!', 'Attendance saved. Your learners can now rate this session.', 25, 'tutor.completeSession(session) → session.markCompleted()');
+  },
+  // TutoringSession.cancel()
+  cancelClass:d => {
+    const c = cls(d.id); if(!d.ok) return ask(`Cancel “${c.title}”?`, 'Learners will see it as cancelled.', d, 'cancelClass', 'Cancel class');
+    c.status = 'cancelled'; S.requests.filter(r => r.classId===c.id && r.status==='pending').forEach(r => r.status='declined');
+    logEvent(`${me().name} cancelled “${c.title}”`); save(); render();
+    sheet('ok', 'Class cancelled', 'Pending join requests were declined.', 'session.cancel()');
+  },
+  // Tutor.addCourse() / removeCourse()
+  addCourse:() => {
+    const u = me(), id = document.getElementById('addCourseSel')?.value;
+    if(!id) fail('NoCourseSelectedException', 'You already teach every course on the list.');
+    u.courses.push(id); save(); render(); sheet('ok', 'Course added', course(id).name, 'tutor.addCourse(course)');
+  },
+  removeCourse:d => {
+    const u = me();
+    if(S.classes.some(c => c.tutorId===u.id && c.courseId===d.id && c.status==='open')) fail('CourseInUseException', `You still have open classes for ${course(d.id).name}.`);
+    u.courses = u.courses.filter(c => c !== d.id); save(); render(); sheet('ok', 'Course removed', course(d.id).name, 'tutor.removeCourse(course)');
+  },
+  removeAvail:d => { const u = me(); u.availability.splice(+d.i, 1); save(); render(); },
+  // Administrator.manageUser()
+  toggleUser:d => {
+    const x = user(d.id); x.active = !x.active; logEvent(`Admin ${x.active?'activated':'deactivated'} ${x.name}`); save(); render();
+    sheet('ok', x.active ? 'Account activated' : 'Account deactivated', x.active ? `${x.name} can log in again.` : `${x.name} can no longer log in.`, 'administrator.manageUser(user)');
+  },
+  // Administrator.removeListing()
+  removeListing:d => {
+    const c = cls(d.id); if(!d.ok) return ask(`Remove “${c.title}”?`, 'The listing will be hidden from learners.', d, 'removeListing', 'Remove');
+    c.status = 'removed'; logEvent(`Admin removed listing “${c.title}”`); save(); render();
+    sheet('ok', 'Listing removed', `${c.title} is hidden from learners.`, 'administrator.removeListing(tutoringClass)');
+  },
+};
+
+const F = {
+  // User.login() — polymorphism: the role decides which menu (displayMenu) you land on
+  login:fd => {
+    const sr = v(fd,'srCode'), pw = v(fd,'password'), role = v(fd,'role');
+    if(!/^\d{2}-\d{5}$/.test(sr)) fail('InvalidInputException', 'SR-Code must look like 00-00000.');
+    const u = S.users.find(x => x.srCode === sr);
+    if(!u || u.password !== pw) fail('InvalidCredentialsException', 'Wrong SR-Code or password. Try a demo account below.');
+    if(u.role !== role) fail('RoleMismatchException', `This account is registered as ${u.role}, not ${role}.`);
+    if(!u.active) fail('AccountDisabledException', 'This account was deactivated by an administrator.');
+    S.me = u.id; ui.view = null; save(); render();
+    sheet('ok', `Welcome back, ${first(u.name)}!`, u.role==='Administrator' ? 'Ready to manage AraLinks.' : `You're on a ${S.streak[u.id]||0}-day streak 🔥`, `${u.role.toLowerCase()}.login() → displayMenu()`);
+  },
+  register:fd => {
+    const name = v(fd,'name'), sr = v(fd,'srCode'), email = v(fd,'email'), pw = v(fd,'password'), role = v(fd,'role');
+    if(name.length < 2) fail('InvalidInputException', 'Please enter your full name.');
+    if(!/^\d{2}-\d{5}$/.test(sr)) fail('InvalidInputException', 'SR-Code must look like 00-00000.');
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) fail('InvalidInputException', 'That email doesn\'t look right.');
+    if(pw.length < 6) fail('InvalidInputException', 'Password needs at least 6 characters.');
+    if(S.users.some(u => u.srCode === sr)) fail('DuplicateAccountException', 'An account with that SR-Code already exists.');
+    const colors = ['#1CB0F6','#58CC02','#FF9600','#CE82FF','#FF4B4B','#00B894'];
+    const u = {id:uid('u'), role, srCode:sr, name, email, password:pw, university:'BatStateU – Alangilan', active:true, color:colors[Math.random()*6|0], program:v(fd,'program')||'Undeclared', yearLevel:+v(fd,'yearLevel')||1};
+    if(role === 'Tutor') Object.assign(u, {courses:[], hourlyRate:150, mode:'Online', availability:[], bio:'New tutor on AraLinks!'});
+    S.users.push(u); S.me = u.id; S.xp[u.id] = 0; S.streak[u.id] = 1; logEvent(`${name} registered as ${role}`);
+    ui.view = role==='Tutor' ? 'profile' : null; save(); render();
+    celebrate('Welcome to AraLinks!', role==='Tutor' ? 'Set up your courses, rate, and availability so learners can find you.' : 'Let\'s find you a class or a tutor.', 0, `new ${role}(…).register()`);
+  },
+  search:fd => { ui.q = v(fd,'q'); ui.subj = v(fd,'subj'); ui.day = v(fd,'day'); renderGrid(); },
+  tsearch:fd => { ui.tq = v(fd,'tq'); ui.tcourse = v(fd,'tcourse'); ui.tmax = +v(fd,'tmax'); renderGrid(); },
+  // Learner.submitRequest() for a private session — checks the tutor's availability
+  private:(fd, f) => {
+    const u = me(), t = user(f.dataset.tid), day = v(fd,'day'), s = v(fd,'start'), e = v(fd,'end');
+    if(!s || !e || mins(e) <= mins(s)) fail('InvalidScheduleException', 'End time must be after the start time.');
+    const slot = t.availability.find(a => a.day===day && mins(s) >= mins(a.start) && mins(e) <= mins(a.end));
+    if(!slot){
+      const onDay = t.availability.filter(a => a.day===day);
+      fail('UnavailableScheduleException', onDay.length ? `${first(t.name)} is only free ${day} ${onDay.map(a=>`${t12(a.start)}–${t12(a.end)}`).join(', ')}.` : `${first(t.name)} isn't available on ${day}. Try ${t.availability.map(a=>a.day).join(', ')}.`);
+    }
+    if(S.requests.some(r => r.type==='private' && r.learnerId===u.id && r.tutorId===t.id && r.status==='pending')) fail('DuplicateRequestException', `You already have a pending request with ${first(t.name)}.`);
+    S.requests.push({id:uid('r'), type:'private', learnerId:u.id, tutorId:t.id, courseId:v(fd,'courseId'), day, start:s, end:e, message:v(fd,'message'), status:'pending', at:Date.now()});
+    gainXP(u.id, 10); logEvent(`${u.name} requested a private session with ${t.name}`); save(); go('myclasses');
+    celebrate('Request sent!', `${first(t.name)} will accept or decline your ${day} session.`, 10, 'learner.submitRequest(tutor, schedule)');
+  },
+  // Review.validateRating() + Learner.rateSession()
+  review:(fd, f) => {
+    const u = me(), c = cls(f.dataset.id), n = +v(fd,'rating');
+    if(n < 1 || n > 5) fail('InvalidRatingException', 'Pick 1 to 5 stars first.');
+    if(c.status !== 'completed') fail('SessionNotCompletedException', 'You can only rate completed sessions.');
+    if(S.reviews.some(r => r.classId===c.id && r.learnerId===u.id)) fail('DuplicateReviewException', 'You already rated this session.');
+    S.reviews.push({id:uid('v'), classId:c.id, learnerId:u.id, tutorId:c.tutorId, rating:n, comment:v(fd,'comment'), at:Date.now()});
+    gainXP(u.id, 15); ui.rateTarget = null; logEvent(`${u.name} rated “${c.title}” ${n}★`); save(); render();
+    celebrate('Thanks for the feedback!', `${first(user(c.tutorId).name)}'s rating is now ★ ${rating(c.tutorId).avg}.`, 15, 'learner.rateSession(session, rating) → tutor.computeAverageRating()');
+  },
+  // TutoringClass constructor + validation
+  createClass:fd => {
+    const u = me(), title = v(fd,'title'), courseId = v(fd,'courseId'), days = fd.getAll('days'), s = v(fd,'start'), e = v(fd,'end'), max = Number(v(fd,'max')), rate = Number(v(fd,'rate')), link = v(fd,'link');
+    if(title.length < 3) fail('InvalidInputException', 'Give your class a title (3+ characters).');
+    if(!courseId) fail('InvalidInputException', 'Pick a subject you teach.');
+    if(!days.length) fail('InvalidScheduleException', 'Pick at least one day.');
+    if(!s || !e || mins(e) <= mins(s)) fail('InvalidScheduleException', 'End time must be after the start time.');
+    if(!Number.isInteger(max) || max < 2 || max > 50) fail('InvalidCapacityException', 'Max tutees must be a whole number from 2 to 50.');
+    if(v(fd,'rate')==='' || !(rate >= 0) || rate > 5000) fail('InvalidRateException', 'Enter a rate from ₱0 to ₱5,000.');
+    if(link && !/^https?:\/\/\S+\.\S+/.test(link)) fail('InvalidLinkException', 'Classroom link must start with http:// or https://');
+    const c = {id:uid('k'), kind:'group', title, courseId, tutorId:u.id, days, start:s, end:e, max, rate, platform:v(fd,'platform'), link, learners:[], status:'open', attendance:{}};
+    S.classes.push(c); gainXP(u.id, 20); logEvent(`${u.name} published “${title}”`); save(); render();
+    celebrate('Class published!', `${title} is now visible to learners in Browse.`, 20, 'new TutoringClass(…) → tutor.publishClass()');
+  },
+  // TutoringClass.setClassroomLink()
+  link:(fd, f) => {
+    const c = cls(f.dataset.id), link = v(fd,'link');
+    if(link && !/^https?:\/\/\S+\.\S+/.test(link)) fail('InvalidLinkException', 'Classroom link must start with http:// or https://');
+    c.link = link; c.platform = v(fd,'platform'); save(); render();
+    sheet('ok', 'Classroom link saved', 'Enrolled learners can open it now.', 'tutoringClass.setClassroomLink(link)');
+  },
+  // User.updateProfile() / Tutor.setRate()
+  profile:fd => {
+    const u = me();
+    if(v(fd,'name').length < 2) fail('InvalidInputException', 'Name can\'t be empty.');
+    if(u.role==='Tutor'){
+      const r = Number(v(fd,'hourlyRate'));
+      if(!(r >= 50) || r > 5000) fail('InvalidRateException', 'Hourly rate must be between ₱50 and ₱5,000.');
+      u.hourlyRate = r; u.bio = v(fd,'bio'); u.mode = v(fd,'mode');
+    }
+    u.name = v(fd,'name'); u.program = v(fd,'program'); u.yearLevel = +v(fd,'yearLevel'); save(); render();
+    sheet('ok', 'Profile saved', 'Looking good!', u.role==='Tutor' ? 'tutor.updateProfile() · tutor.setRate(rate)' : 'learner.updateProfile()');
+  },
+  // Tutor.addAvailability()
+  avail:fd => {
+    const u = me(), day = v(fd,'day'), s = v(fd,'start'), e = v(fd,'end');
+    if(!s || !e || mins(e) <= mins(s)) fail('InvalidScheduleException', 'End time must be after the start time.');
+    if(u.availability.some(a => a.day===day && mins(s) < mins(a.end) && mins(e) > mins(a.start))) fail('ScheduleConflictException', `That overlaps hours you already set on ${day}.`);
+    u.availability.push({day, start:s, end:e}); u.availability.sort((a,b) => DAYS.indexOf(a.day)-DAYS.indexOf(b.day) || mins(a.start)-mins(b.start)); save(); render();
+    sheet('ok', 'Availability added', `${day} ${t12(s)}–${t12(e)}`, 'tutor.addAvailability(schedule)');
+  },
+};
+const v = (fd, k) => String(fd.get(k) ?? '').trim();
+
+function run(fn){
+  try { fn(); }
+  catch(e){
+    if(e instanceof AppError){
+      sheet('err', 'Oops!', e.message, `throw new ${e.name}()`);
+      document.querySelector('form .btn[type=submit]:focus, .card form')?.classList.add('shake');
+      setTimeout(() => document.querySelectorAll('.shake').forEach(x => x.classList.remove('shake')), 600);
+    } else { console.error(e); sheet('err', 'Something broke', String(e.message || e)); }
+  }
+}
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-a]'); if(!t) return;
+  const fn = A[t.dataset.a]; if(!fn) return;
+  if(t.tagName !== 'A') e.preventDefault();
+  e.stopPropagation();
+  if(t.dataset.ok) A.closeOverlay();
+  run(() => fn(t.dataset, t));
+});
+document.addEventListener('submit', e => {
+  const f = e.target, fn = F[f.dataset.f]; if(!fn) return;
+  e.preventDefault(); run(() => fn(new FormData(f), f));
+});
+document.addEventListener('input', e => {
+  const id = e.target.id;
+  if(id === 'q'){ ui.q = e.target.value; renderGrid(); }
+  if(id === 'tq'){ ui.tq = e.target.value; renderGrid(); }
+  if(id === 'tmax'){ ui.tmax = +e.target.value; document.getElementById('tmaxv').textContent = `₱${ui.tmax}/hr`; renderGrid(); }
+  if(e.target.matches('[data-cost]')){ // TutoringSession.computeCost()
+    const f = e.target.form, t = user(f.dataset.tid), s = f.start.value, en = f.end.value;
+    const h = s && en ? (mins(en)-mins(s))/60 : 0;
+    document.getElementById('cost').textContent = h > 0 ? `₱${Math.round(t.hourlyRate*h)}` : '—';
+  }
+});
+document.addEventListener('change', e => {
+  if(e.target.id === 'subj'){ ui.subj = e.target.value; renderGrid(); }
+  if(e.target.id === 'day'){ ui.day = e.target.value; renderGrid(); }
+  if(e.target.id === 'tcourse'){ ui.tcourse = e.target.value; renderGrid(); }
+});
+document.addEventListener('keydown', e => { if(e.key === 'Escape'){ closeSheet(); A.closeOverlay(); } });
+
+load(); render();
+</script>
+</body>
+</html>
